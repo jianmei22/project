@@ -1,0 +1,59 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #qq{
+            width: 50px;
+            height: 50px;
+            background-color: #FA8072;
+            float: left;
+            margin: 0 30px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 50px;
+        }
+        #ziliao{
+            width: 200px;
+            height: 200px;
+            background-color: #90EE90;
+            float: left;
+            display: none;
+            text-align: center;
+            line-height: 200px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //获取qq和ziliao的id
+            var oQq = document.getElementById('qq');
+            var oZiliao = document.getElementById('ziliao');
+            //定义一个timer等于null、用于后面关闭延时效果
+            var timer = null;
+            //qq和ziliao框鼠标移入的时候清除延时效果并且显示盒子样式
+            oZiliao.onmouseover = oQq.onmouseover = function () {
+                oZiliao.style.display = 'block';
+                clearTimeout(timer);
+            };
+            //qq和ziliao框鼠标移出的时候设置延时效果关闭盒子样式
+            oZiliao.onmouseout = oQq.onmouseout = function () {
+                timer = setTimeout(function () {
+                    oZiliao.style.display = 'none';
+                },1000);
+            };
+        }
+    </script>
+</head>
+<body>
+<div id="qq">
+    qq
+</div>
+<div id="ziliao">
+    资料
+</div>
+</body>
+</html>

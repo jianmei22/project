@@ -1,0 +1,58 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .time{
+            width: 400px;
+            height: 200px;
+            color: #FA8072;
+            font-size: 26px;
+            font-family: Arial;
+            background-color: #999;
+            margin: 30px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        //空位补零
+        //传入一个参数n
+        function oDou(n) {
+            if (n < 10){
+                return '0' + n;
+            }
+            else {
+                return '' + n;
+            }
+        };
+        window.onload = function () {
+            //使用除了id之外的get获取的时候必须加下标
+            var oTime = document.getElementsByClassName('time')[0];
+            function clock() {
+                var oDate = new Date();
+                //定义一个数组存储星期，如果实际星期为星期天，系统显示0，星期六，系统显示6，即下标对应的星期
+                var arrWeek = ['星期天','星期一','星期二','星期三','星期四','星期五','星期六'];
+                var year = oDate.getFullYear();
+                //月份例外，默认的月份比实际的月份小1月
+                var month = oDate.getMonth() + 1;
+                var date = oDate.getDate();
+                //将时分秒空位分别补零
+                var hour = oDou(oDate.getHours());
+                var minute = oDou(oDate.getMinutes());
+                var second = oDou(oDate.getSeconds());
+                var week = oDate.getDay();
+                oTime.innerHTML = year + '年' + month + '月' + date + '日' + '<br>' + hour + ':' + minute + ':' + second + arrWeek[week];
+            }
+            setInterval(clock,1000);
+            clock();
+        }
+    </script>
+</head>
+<body>
+<div class="time">
+</div>
+</body>
+</html>

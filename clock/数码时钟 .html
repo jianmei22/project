@@ -1,0 +1,83 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .time{
+            width: 500px;
+            height: 100px;
+            background-color: #FA8072;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .time li{
+            list-style: none;
+            width: 60px;
+            height: 70px;
+        }
+        .time li:nth-child(3),li:nth-child(6) {
+            width: 60px;
+            height: 100px;
+            background: url("./img/maohao.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        .time img{
+            width: 50px;
+        }
+    </style>
+    <script>
+        //如果数字位为空，则补零
+        //要给toDouble函数设置一个参数
+        //不可以去掉’‘符号，此时输出的数字类型已经是字符串，可以实现下列步骤的字符串连接
+        function toDouble(i) {
+            if (i < 10){
+                return '0' + i;
+            }
+            else
+                return '' + i;
+        };
+        window.onload = function () {
+            var oTime = document.getElementsByClassName('time');
+            //定义一个函数，防止页面刷新的时候时间会先归0，因为有一秒的停顿时间
+            function watch() {
+                //获取img
+                var aImg = document.getElementsByTagName('img');
+                //创建一个日期对象
+                var oDate = new Date();
+                //定义三个变量，分别被赋值为事、分、秒
+                var hour = toDouble(oDate.getHours());
+                var minute = toDouble(oDate.getMinutes());
+                var second = toDouble(oDate.getSeconds());
+                //将数字连接成6个数对应下面的6张图片
+                var str = hour + minute + second;
+                //显示当前时间所对应的图片
+                for (var i = 0; i < aImg.length; i++) {
+                    // aImg[i].src = './img/' + str[i] + '.png';
+                //因为兼容性问题，所以str[i]并不满足定低版本的浏览器，所以要使用charAt
+                    aImg[i].src = './img/' + str.charAt(i) + '.png';
+                }
+            }
+            //使用间隔型定时器，间隔1000毫秒
+            setInterval(watch,1000);
+            //直接调用定义的watch函数，防止刷新时出现1000毫秒的停顿空白
+            watch();
+        };
+    </script>
+</head>
+<body>
+    <ul class="time">
+        <li><img src="./img/0.png" alt=""></li>
+        <li><img src="./img/0.png" alt=""></li>
+        <li></li>
+        <li><img src="./img/0.png" alt=""></li>
+        <li><img src="./img/0.png" alt=""></li>
+        <li></li>
+        <li><img src="./img/0.png" alt=""></li>
+        <li><img src="./img/0.png" alt=""></li>
+    </ul>
+</body>
+</html>

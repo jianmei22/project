@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .cal{
+            width: 300px;
+            height: 450px;
+            background-color: #999;
+        }
+        .clearfix{
+            content: '';
+            overflow: hidden;
+        }
+        .cal div{
+            width: 125px;
+            height: 80px;
+            background-color: #FA8072;
+            float: left;
+            margin: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cal .active{
+            background-color: #FFFFFF;
+        }
+    </style>
+    <script>
+        //定义存储内容的数组
+        var data = [
+            11111111,
+            22222222,
+            33333333,
+            44444444,
+            55555555,
+            66666666,
+            77777777,
+            88888888,
+            99999999,
+        ];
+        window.onload = function () {
+            var oCal = document.getElementById('calendar');
+            var aDiv = oCal.getElementsByClassName('aaa');
+            var oP = document.getElementById('pp');
+        //    for循环给每一个div加一个事件
+            for (var i = 0; i < aDiv.length; i ++){
+                aDiv[i].index = i;
+                aDiv[i].onclick = function () {
+                    //清除每一个div的样式
+                    for (var i = 0; i < aDiv.length; i ++){
+                        aDiv[i].className = 'aaa';
+                    }
+                    //当前点击事件的样式
+                    aDiv[this.index].className = 'aaa active';
+                    //利用innerHtml将数组内的内容写入到对应的标签内
+                    oP.innerHTML = '<h2>' + (this.index + 1) + '月活动 </h2> <p>' + data[this.index] + '</p>';
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+<div class="cal clearfix" id="calendar">
+    <div class="aaa active">1月</div>
+    <div class="aaa">2月</div>
+    <div class="aaa">3月</div>
+    <div class="aaa">4月</div>
+    <div class="aaa">5月</div>
+    <div class="aaa">6月</div>
+    <section id="pp">
+    <h2>1月活动</h2>
+    <p>前端的开发中，在页面的布局时， HTML将元素进行定义.</p>
+    </section>
+</div>
+</body>
+</html>

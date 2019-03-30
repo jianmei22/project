@@ -1,0 +1,87 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .tab{
+            list-style: none;
+            width: 300px;
+        }
+        .tab li {
+            width: 60px;
+            height: 40px;
+            float: left;
+            margin: 5px;
+            background-color: #FA8072;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 20%;
+            cursor: pointer;
+        }
+        .clearfix{
+            content: '';
+            overflow: hidden;
+        }
+        .text{
+            width: 260px;
+            height: 260px;
+            margin: 10px;
+            background-color: #90EE90;
+            display: none;
+        }
+        .active{
+            background-color: teal;
+            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #active{
+            background-color: teal;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oTab = document.getElementsByClassName('tab clearfix')[0];
+            var aLi = document.getElementsByTagName('li');
+            var oText = document.getElementsByClassName('text');
+        //    给每一个li元素加事件
+            for (var i = 0; i < aLi.length; i ++){
+                //定义点击时的当前效果，给每一个li加index属性
+                aLi[i].index = i;
+                aLi[i].onclick = function () {
+                    //去掉所有li的id样式，将所有的div的class样式变为text
+                    for (var i = 0; i < aLi.length; i ++){
+                        aLi[i].id = '';
+                        oText[i].className = 'text';
+                    }
+                    //当前点击的li的id为active
+                    this.id = 'active';
+                    //当前点击的div的classname为 text active
+                    oText[this.index].className = 'text active';
+                    //this.index 当前按钮的index属性，这个属性是循环加事件时，附带给按钮加上的属性
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+<ul class="tab clearfix">
+    <li id="active">教育</li>
+    <li>知识</li>
+    <li>能力</li>
+    <li>素质</li>
+</ul>
+<div class="text active">教育</div>
+<div class="text">知识</div>
+<div class="text">能力</div>
+<div class="text">素质</div>
+</body>
+</html>
