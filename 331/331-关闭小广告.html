@@ -1,0 +1,45 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .adv{
+            width: 200px;
+            height: 200px;
+            background-color: #FA8072;
+            position: relative;
+        }
+        a{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 14px;
+        }
+        a:hover{
+            color: #fff;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oAdv = document.getElementsByClassName('adv')[0];
+            var oA = document.getElementsByTagName('a')[0];
+            console.log(oA);
+            oA.onclick = function () {
+                //利用parentNode获取a的父节点
+                oA.parentNode.style.display = 'none';
+            };
+        };
+    </script>
+</head>
+<body>
+<div class="adv">
+    <a href="#">关闭</a>
+</div>
+</body>
+</html>

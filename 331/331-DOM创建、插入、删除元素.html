@@ -1,0 +1,56 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li {
+            width: 60px;
+            height: 30px;
+            background-color: #FA8072;
+            margin: 10px;
+            list-style: none;
+            color: #FFFFFF;
+            line-height: 30px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oUpload = document.getElementById('upload');
+            var oCreat = document.getElementById('creat');
+            var oText = document.getElementById('text');
+            oUpload.onclick = function () {
+                //利用creatElement创建一个li节点
+                var oLi = document.createElement('li');
+                //获取创建的li
+                //必须是在父级节点获取创建的元素
+                var aLi = oCreat.getElementsByTagName('li');
+                //父级.appendChild(子节点)
+                //在父级节点中插入子节点
+                oCreat.appendChild(oLi);
+                //将文本框输入的值赋值给创建的li对象
+                //注意此处必须是oLi，不能是数组aLi
+                oLi.innerHTML = oText.value;
+                if (aLi.length > 0) {
+                    //insertBefore(节点，原有节点)
+                    //始终插入在数组的第一位aLi[0]
+                    oCreat.insertBefore(oLi, aLi[0]);
+                } else {
+                    oCreat.appendChild(oLi);
+                }
+
+            };
+        };
+    </script>
+</head>
+<body>
+<input type="text" id="text">
+<input type="button" value="上传" id="upload">
+<ul id="creat">
+
+</ul>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul{
+            width: 200px;
+            height: 200px;
+            list-style: none;
+        }
+        li{
+            margin: 5px;
+        }
+        a{
+            margin: 5px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+          var oUl = document.getElementsByTagName('ul')[0];
+          var oLi =document.getElementsByTagName('li');
+          var oA = document.getElementsByTagName('a');
+            //for循环为每一个a加事件
+            for (var i = 0 ;i < oA.length; i ++) {
+                oA[i].onclick = function(){
+                    //利用parentNode获取a的父节点li，通过关闭li的display样式，实现隐藏效果
+                    this.parentNode.style.display = 'none';
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+<!--点击隐藏的时候隐藏当前的li-->
+<ul>
+    <li>111111<a href="#">隐藏</a></li>
+    <li>222222<a href="#">隐藏</a></li>
+    <li>333333<a href="#">隐藏</a></li>
+    <li>000000<a href="#">隐藏</a></li>
+    <li>666666<a href="#">隐藏</a></li>
+    <li>888888<a href="#">隐藏</a></li>
+</ul>
+</body>
+</html>

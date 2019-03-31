@@ -1,0 +1,38 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li{
+            margin: 10px;
+            width: 300px;
+            height: 20px;
+            list-style: none;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oUl = document.getElementsByTagName('ul')[0];
+            console.log(oUl.children);
+            //利用children获取子节点，也可以用childNode
+            //循环ul的子节点
+            for (var i = 0;i < oUl.children.length; i ++){
+                //定义ul的子节点的样式
+                oUl.children[i].style.backgroundColor = 'red';
+            }
+        };
+    </script>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>
