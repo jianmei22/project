@@ -630,7 +630,7 @@ __注意__：和eq()不一样的地方是，eq()的索引是从0开始的
 
 index是从1开始的，可以是字符串even或者odd或者是方程式:nth-of-type(even), :nth-of-type(4n)
 
-此例中选择的是第一个div内的span兄弟元素的第二个
+此例中选择的是第一个div内的button兄弟元素的第二个
 ```js
 		<div>
 			<button></button>
