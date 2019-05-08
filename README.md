@@ -134,6 +134,7 @@ $('p~span').css({
 #### 属性选择器
 
 1. [attribute]
+
 $('div[title]')
 查找所有属性名为title的元素
 
@@ -167,7 +168,11 @@ $('div[title = demo]').css({
 })
 ```
 
-3. [attribute^='value']^=以value开头的所有元素
+3. [attribute|='value']
+
+跟[attribute = value]基本类似，均是选择属性名等于该属性值的所有元素
+
+4. [attribute^='value']^=以value开头的所有元素
 
 div[title^=demo]
 查找title属性是以demo开头的元素
@@ -184,11 +189,26 @@ $('div[title = demo]').css({
 })
 ```
 
-4. [attribute|='value']
+5. [attribute$='value']$=以value结尾的所有元素
 
-跟[attribute = value]基本类似，均是选择属性名等于该属性值的所有元素
+div[title$=demo]
 
-5. [attribute!='value']
+查找title属性是以demo结尾的元素
+
+此例三个div中前三个div会被选择改变样式
+
+```js
+<div title = "demo"></div>
+<div title = "demo demo"></div>
+<div title = "demodemo"></div>
+<div title = "de"></div>
+
+$('div[title $= demo]').css({
+	border: '5px solid skyblue',
+})
+```
+
+6. [attribute!='value']
 
 这个选择器等同于 :not([attr=value]) 即非
 
@@ -208,7 +228,7 @@ $('div[title != demo]').css({
 })
 ```
 
-6. [attribute*='value']
+7. [attribute*='value']
 只要属性名中的一部分包含了value这个属性值，均会被选择到
 
 div[title*=demo]
@@ -223,10 +243,200 @@ div[title*=demo]
 $('div[title*=demo]').html('jianmei');
 ```
 
+8. [attribute~='value']
+div[title~=demo]即title属性中有用空格分隔后的值等于demo
 
+此例中第一个和第三个中都含有demo，且第二个有空格，故选择的是第一个和第三个
 
+__注意：__若此例中使用div[title=demo]，则选择的只有第一个
 
+```js
+<div title = "demo"></div>
+<div title = "de demo"></div>
+<div title = "demodemo"></div>
+<div title = "de"></div>
 
+$('div[title~=demo]').html('jianmei');
+```
+***
+### 基本筛选选择器
+
+1. :eq(index) index 匹配元素的索引值，从0开始
+
+eq = equal平等的，即是等于index的值
+
+此例中选择的是index等于0的div
+
+```js
+<div class="demo">demo1</div>
+<div class="demo">demo2</div>
+<div id="demo">demo3</div>
+$('div:eq(0)').css({
+	color: 'red',
+})
+```
+2. :gt(index) 
+
+gt = great than 即是大于index的值
+
+此例中第二个和第三个div会被选择，选择的是index大于0的元素
+
+```js
+<div class="demo">demo1</div>
+<div class="demo">demo2</div>
+<div id="demo">demo3</div>
+$('div:gt(0)').css({
+	color: 'red',
+})
+```
+
+3. :lt(index) 
+
+lt = less than 即是小于index的值
+
+此例中第一个和第二个div会被选择，选择的是index小于0的元素
+
+```js
+<div class="demo">demo1</div>
+<div class="demo">demo2</div>
+<div id="demo">demo3</div>
+$('div:lt(2)').css({
+	color: 'red',
+})
+```
+
+4. :odd选择__index为奇数__的元素,并不是按照视觉可见的顺序
+
+此例中选择的是第二个和第四个div，index分别为1，3
+
+```js
+		<div class="demo">demo1</div>
+		<div class="demo">demo2</div>
+		<div id="demo">demo3</div>
+		<div class="demodemo">demo4</div>
+
+			$('div:odd').css({
+				color: 'red',
+			})
+```
+
+5.:even 选择__index为偶数__的元素,并不是按照视觉可见的顺序
+
+此例中选择的是第一个和第三个div，index分别为0，2
+
+```js
+		<div class="demo">demo1</div>
+		<div class="demo">demo2</div>
+		<div id="demo">demo3</div>
+		<div class="demodemo">demo4</div>
+
+			$('div:even').css({
+				color: 'red',
+			})
+```
+
+6. :first相当于:eq(0),为了更好的性能，一般使用.filter(':first')
+
+此时的顺序是视觉上可见的顺序
+
+此例中仅选择第一个div
+
+```js
+		<div class="demo">demo1</div>
+		<div class="demo">demo2</div>
+		
+			$('div:first').html('jianmei');
+```
+
+7. :last，为了更好的性能，一般使用.filter(':last')
+
+此例中仅选择最后一个div
+
+```js
+		<div class="demo">demo1</div>
+		<div class="demo">demo2</div>
+		
+			$('div:last').html('jianmei');
+```
+
+8. :header 选择所有的标题元素，为了更好的性能，一般使用.filter(':header')
+
+此例中的h1和h2均会被选择，改变样式
+
+```js
+		<h1>jianmei</h1>
+		<h2>jianmei</h2>
+		
+			$(':header').css({
+				background: 'skyblue',
+			})
+```
+
+9. :not() 用于过滤的选择器，但是通常会构建非常复杂的选择器，所以大多数情况下使用.not()方法
+
+这里只写.not(selector)方法
+
+此例中选择的是index不是奇数的div，所以选择的是第一个和第三个div
+
+```js
+		<div class="demo">demo1</div>
+		<div class="demo">demo2</div>
+		<div id="demo">demo3</div>
+		<div class="demodemo">demo4</div>
+		
+			$('div').not(':odd').css({
+				border: '2px solid skyblue',
+			})
+
+```
+
+10. :lang('language') 选择指定语言的所有元素
+
+__注意__：此例中只有第一个和第二个span元素均会被选中，:lang会选中含有language或者第一个符合的language的元素，并不是只要含有language的元素都会被选择
+
+```js
+		<span lang = "en">1</span>
+		<span lang = "en-mei">2</span>
+		<span lang = "mei-en">3</span>
+		
+			$('span:lang(en)').css({
+				border: '2px solid red',
+			})
+```
+
+11. :root 选择的根元素永远都是html
+
+此例中会向每一个p中添加一个html
+```js
+			<p>demo</p>
+			<p>demo</p>
+			<p>demo</p>
+			
+			$('<b></b>').html($(':root')[0].nodeName).appendTo('p');
+```
+
+12. :target 匹配ID和标识符相匹配的元素
+
+例如：给定url : http://example.com/#foo
+
+`$('p:target');`
+
+将选择 `<p id = 'foo'>`的元素
+
+13. :animated选择所有正在执行动画效果的元素
+
+为了更好的使用效果，首先使用纯CSS选择器选择元素，然后使用.filter(":animated")
+```bash
+
+学到属性和效果的时候再返回来写animated, 第168行
+
+```
+
+### 内容筛选
+***
+1. :parent()选择所有包含子元素或者文本的父级元素
+
+为了获得更好的性能，首先使用纯css选择器选择元素，然后使用.filter(':parent')
 
 
 
