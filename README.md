@@ -624,7 +624,25 @@ __注意__：和eq()不一样的地方是，eq()的索引是从0开始的
 		
 			$('div button:only-child').text('alone').css({
 				border: '2px solid skyblue',
-			})
+			}
+```
+7. ：nth-of-type() 同一个父元素下面标签名字相同的子元素中的第n个
+
+index是从1开始的，可以是字符串even或者odd或者是方程式:nth-of-type(even), :nth-of-type(4n)
+
+此例中选择的是第一个div内的span兄弟元素的第二个
+```js
+		<div>
+			<button></button>
+			<button></button>
+		</div>
+		<div>
+			<button></button>
+		</div>
+		
+			$('div button:nth-of-type(1)').text('alone').css({
+				border: '2px solid skyblue',
+			}
 ```
 ***
 ### 表单选择器
