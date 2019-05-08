@@ -3,7 +3,6 @@
 ### 选择器
 
 #### 基本选择器
-
 1. \* 通用选择器
 
 2. .class 类选择器，一个元素可以有多个类(chrome使用原生js函数getElementByClassName()实现)
@@ -428,34 +427,272 @@ __注意__：此例中只有第一个和第二个span元素均会被选中，:la
 13. :animated选择所有正在执行动画效果的元素
 
 为了更好的使用效果，首先使用纯CSS选择器选择元素，然后使用.filter(":animated")
-```bash
-
-学到属性和效果的时候再返回来写animated, 第168行
-
-```
 
 ### 内容筛选
 ***
-1. :parent()选择所有包含子元素或者文本的父级元素
+1. :parent选择所有包含子元素或者文本的父级元素
 
 为了获得更好的性能，首先使用纯css选择器选择元素，然后使用.filter(':parent')
 
+__注意__:parent涉及的子元素包含文本节点
 
-2. :has()
+此例中选择的是第一个和第二个div，因为只有第三个是没有子元素和文本节点的
+```js
+		<div><p></p></div>
+		<div> </div>
+		<div></div>
+		
+			$('div:parent').css({
+				border: '3px solid skyblue',
+			})
+```
+
+2. empty:和parent相反，选择没有包含子元素的元素
+
+此例中选择的是第三个div，因为只有第三个是没有子元素和文本节点的
+```js
+		<div><p></p></div>
+		<div> </div>
+		<div></div>
+		
+			$('div:empty').css({
+				border: '3px solid skyblue',
+			})
+```
+
+3. :has()
 
 `$('div:has(p)')`选择一个div，这个div内至少含有一个p标签
 
-此处选择的是
+此处选择的是第一个div，只有第一个div内含有p标签
 ```js
 		<div><p></p></div>
 		<div></div>
+		
 			$('div:has(p)').css({
 				border: '2px solid skyblue',
 			})
 ```
 
+4. :contains(text)text区分大小写，选择所有包含指定文本的元素
 
+`$('div:has(mei)')` 查找所有含有mei的div
 
+```js
+		<div>jian mei</div>
+		<div>mei</div>
+		
+			$('div:contains(mei)').css({
+				border: '2px solid skyblue'
+			})
+```
 
+***
+### 可见性筛选
 
+1. :hidden 选择所有隐藏的元素
 
+元素可以被认为是隐藏的几种情况：
+
+* css的display值为none
+* type = "hidden"
+* 元素的高度和宽度显式设置为0
+
+元素visibility:hidden和opcity:0被认为是可见的，因为他们仍然占据文档空间，
+
+使用:hidden()查询不能充分利用原生DOM提供的querySelectorAll()方法来提高性能。为了在现代浏览器上获得更佳的性能，请使用.filter(":hidden")代替
+
+此例中div本来是隐藏的，选择的是有隐藏元素的div，并在3s之后显示
+```js
+		<div style="display: none;">hidden</div>
+		
+			// :hidden
+			$('div:hidden').show(3000);
+			```
+1. :visible 选择所有可见的元素
+
+跟hidden用法相反
+```js
+			<p>demo</p>
+			<p>demo</p>
+			<p>demo</p>
+			
+			$('p:visible').click(function() {
+				$(this).css({
+					background: 'skyblue',
+				})
+			})
+```
+***
+### 子元素筛选选择器
+
+1. :first-child 选择所有父级元素下的第一个子元素 
+
+此例中仅div下面的第一个p改变样式
+```js
+		<div>
+			<p>demo</p>
+			<p>demo</p>
+			<p>demo</p>
+		</div>
+		
+			$('div p:first-child').css({
+				'text-decoration': 'underline',
+			})
+```
+
+2. first-of-type 选择所有相同的元素名称的第一个兄弟元素
+
+_注意_：此例中跟first-child不一样的地方是，first-child只选择直系的第一个，如果第一个不是，则不选择，first-of-type选择的是只要包含有就选择包含的第一个兄弟元素，此处选择的是div内包含的p标签的第一个
+```js
+		<div>
+			<a href=""></a>
+			<p>demo</p>
+			<p>demo</p>
+			<p>demo</p>
+		</div>
+		
+			$('div p:first-of-type').css({
+				background: 'red',
+			})
+```
+
+3. :last-child 选择所有父级元素下的第一个子元素 
+
+此例中仅div下面的最后一个p改变样式
+```js
+		<div>
+			<p>demo</p>
+			<p>demo</p>
+			<p>demo</p>
+		</div>
+		
+			$('div p:last-child').css({
+				'text-decoration': 'underline',
+			})
+```
+
+4. last-of-type 选择所有相同的元素名称的最后一个兄弟元素
+
+原理同上：first-of-type，
+```js
+		<div>
+			<a href=""></a>
+			<p>demo</p>
+			<p>demo</p>
+			<p>demo</p>
+		</div>
+		
+			$('div p:last-of-type').css({
+				background: 'red',
+			})
+```
+
+5. :nth-child(index/even/odd/equation) 
+
+index：匹配的索引值，从1开始，可以是even（偶数） odd（奇数）2n
+
+__注意__：和eq()不一样的地方是，eq()的索引是从0开始的 
+
+```js
+		<div>
+			<button></button>
+			<button></button>
+		</div>
+		<div>
+			<button></button>
+		</div>
+		
+	$('div:nth-child(2)').click(function () {
+				$(this).css({
+					border: '2px solid skyblue',
+				});
+			});
+```
+
+6. :only-child 如果某元素是其父元素的唯一一个子元素，就会被选择，如果父元素还有其他元素，就不会被选择
+
+此例中，只有第二个div内有唯一一个button，所以选择的是第二个，在第二个button内添加文本：alone
+```js
+		<div>
+			<button></button>
+			<button></button>
+		</div>
+		<div>
+			<button></button>
+		</div>
+		
+			$('div button:only-child').text('alone').css({
+				border: '2px solid skyblue',
+			})
+```
+***
+### 表单选择器
+
+1. :button 选择所有按钮元素和类型为按钮的元素
+
+此例中两个元素均被选择且添加move样式
+```js
+    <input type="button" value="Input Button"/>
+    <button>Button</button>
+	
+			$(':button').addClass('move');
+	
+```
+2. :checkbox 查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能，建议使用[type="checkbox"]代替
+
+```js
+    <input type="checkbox" />
+	
+			$(':checkbox').wrap("<span style='background-color:red'>");
+			----------------------------------------------------------
+			//最好这样写
+			$('[type = checkbox]').wrap("<span style='background-color:red'>");
+```
+
+3. :checked 匹配所有勾选的元素
+
+此例中选择了第三个处于选中状态的input
+```js
+    <input type="checkbox" />
+    <input type="checkbox" />
+    <input type="checkbox" checked />
+	
+			$('input:checked').wrap("<span style='background-color:red'>");
+			```
+4. :disabled 匹配所有禁用的元素
+
+此例中选择第一个input
+```js
+    <input type="checkbox" disabled/>
+    <input type="checkbox" />
+	
+			$('input:disabled').wrap("<span style='background-color:red'>");
+```
+
+5. enabled 匹配所有可用的元素，和disabled用法相反
+
+此例中选择第二个input
+```js
+    <input type="checkbox" disabled/>
+    <input type="checkbox" />
+	
+			$('input:enabled').wrap("<span style='background-color:red'>");
+```
+
+6. :focus 选择当前获取焦点的元素
+
+此例中选择的是当前获取焦点的input,且该input的类型为text，再设置样式
+```js
+    <input type="text" />
+	
+			$('input[type = text]').focus(function () {
+				$(this).css({
+					background:'red',
+				})
+			})
+```
+
+总结：:file :image :input : password :radio :reset :select :submit :text 
+
+均是选择所有类型为该属性的元素用法同上。
