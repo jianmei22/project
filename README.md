@@ -3,6 +3,7 @@
 ### 选择器
 
 #### 基本选择器
+
 1. \* 通用选择器
 
 2. .class 类选择器，一个元素可以有多个类(chrome使用原生js函数getElementByClassName()实现)
