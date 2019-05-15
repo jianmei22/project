@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#log {
+				width: 300px;
+				height: 100px;
+				background-color: #90EE90;
+			}
+
+			p {
+				width: 200px;
+				height: 30px;
+				background-color: salmon;
+			}
+
+			.elem {
+				background-color: #90EE90;
+				/* width: 20px; */
+			}
+			span{
+				color: salmon;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="../img/4.jpg" alt="" id="photo">
+		<input type="checkbox" checked>
+		<input type="checkbox">
+		<input type="checkbox">
+		<button>enable</button>
+		<input type="text" title="hello">
+		<input type="text" value="text">
+		<!-- <p></p> -->
+		<button>feed </button>
+		<button class="elem">the </button>
+		<button>input </button>
+		<button type="reset">reset</button>
+		<input type="text" value="click a button" lang="en">
+		<p>jianmei</p>
+		<p>jianjian</p>
+		<p>jianjian</p>
+		<!-- <p class="elem">meimei</p> -->
+		<p style="position: relative;">jianjian</p>
+		<div id="log">
+			the value is 
+			<span></span>
+			and
+			<span></span>
+		</div>
+		<!-- <ul>
+			<li>22
+				<ul>
+					<li style="position: relative;">1</li>
+					<li class="elem">2</li>
+					<li>3</li>
+				</ul>
+			</li>
+		</ul> -->
+		<script src="../jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 属性 -->
+		<script type="text/javascript">
+			// .attr()
+			// 同时给img设置alt和title属性
+			// $('#photo').attr({
+			// 	alt: 'jianemi',
+			// 	title: 'meimei',
+			// })
+
+			// .prop()
+			// 禁止页面上所有的复选框
+			// 选择页面中的复选框元素
+			// $("input[type='checkbox']").prop({
+			// 	disabled: true,
+			// })
+
+			// .removeAttr()
+			// 点击按钮,添加或者删除按钮后面input元素的title属性
+			// 使用立即执行函数
+			// (function () {
+			// 	var inputTitle = $("input").attr("title");
+			// 	$("button").click(function () {
+			// 		var input = $(this).next();
+			// 		if(input.attr("title") == inputTitle) {
+			// 			input.removeAttr("title")
+			// 		}else{
+			// 			input.attr("title", inputTitle);
+			// 		}
+			// 		$("#log").html("input title is now" + input.attr("title"));
+			// 	});
+			// })();
+
+			// .removeprop()
+			// 为集合中匹配的元素删除一个属性(property)
+			// para是直接定义在全局对象上面的，即定义在window上面的，所以可以访问window.para来访问，直接访问para
+			// para = $("#log");
+			// para
+			// 	.prop('code', 1234)
+			// 	.append('code is:', String(para.prop('code')),'.')
+			// 	.removeProp('code')
+			// 	// 这个时候已经将prop添加的字符串删除
+			// 	.append('now code is:', String(para.prop('code')),'.')
+
+			// .val()
+			// 取得文本框的值
+			// $("input").keyup(function () {
+			// 	// 获取当前的value值
+			// 	var value = $(this).val();
+			// 	// 向p中添加获取的value值
+			// 	$("p").text(value);
+			// }).keyup();
+
+
+			// $("input").keyup(elem).keyup();
+
+			// $("input").click(function () {
+			// 	var value = $(this).val();
+			// 	$("p").text(value);
+			// })
+
+			// 点击按钮时,在文本框显示按钮的值
+
+			// $("button").click(function () {
+			// 	// 获取button的text文本
+			// 	var text = $(this).text();
+			// 	// 将获取到的文本添加到value
+			// 	$("input[lang = 'en']").val(text);
+			// })
+			// // 点击重置按钮
+			// $("button[type = reset]").click(function () {
+			// 	$("input[lang = 'en']").val('click a button');
+			// })
+		</script>
+		<!-- css -->
+		<script>
+			// .addClass()为每个要匹配的元素加上一个或者多个样式名
+			// 给匹配的元素加上selected样式
+			// 给第二个p添加elem样式
+			// $("p:nth(1)").addClass("elem");
+
+			// .css
+			// 点击元素,获取它的背景颜色
+			// $("p").click(function () {
+			// 	var color = $(this).css("background-color");
+			// 	$("input").val(color);
+			// })
+
+			// 设置样式
+			// 增加div的宽度
+			// 定义count,用于计算次数
+			// var count = 0;
+			// $("#log").click(function () {
+			// 	// 每点击一次,count+1
+			// 	count ++;
+			// 	if(count % 2 == 0){
+			// 		$(this).css({
+			// 			width: '300px',
+			// 		})
+			// 	}else{
+			// 		$(this).css({
+			// 			width: '400px',
+			// 		})
+			// 	}
+			// })
+
+			// .hasClass()
+			// $("input").hasClass("elem").toString();
+
+			// removeClass()
+			// $("button").removeClass('elem');
+
+			// toggleClass()
+			// 点击当前p显示或者隐藏class样式类
+			// $("p").click(function () {
+			// 	$(this).toggleClass('elem');
+			// })
+		</script>
+		<!-- 尺寸 -->
+		<script type="text/javascript">
+			// 点击p的时候增加p的长度,并且改变颜色
+			// $("p").click(function () {
+			// 	$(this).width(300)
+			// 		   .css({
+			// 			   cursor: "auto",
+			// 			   background: '#90EE90',
+			// 		   })
+			// })
+
+			// .innerHeight()
+			// 每点击一次,innerHeight就会改变并改变颜色
+			// var count = 0;
+			// $("p").click(function () {
+			// 	count ++;
+			// 	if(count % 2 == 1) {
+			// 		$(this).innerHeight(50).addClass('elem');
+			// 	}
+			// 	else {
+			// 		$(this).innerHeight(30).addClass();
+			// 	}
+			// 	})
+			// 	
+			// outerHeight()
+// 			var oheight = 60;
+// 			$("p").click(function() {
+// 				$(this).outerHeight(oheight).addClass('elem');
+// 				// 每点击一次就减少4
+// 				oheight -= 4;
+// 			})
+// 
+// 			var oheight = 60;
+// 			$("p").one('click', function() {
+// 				$(this).outerHeight(oheight).addClass('elem');
+// 				// 只有点击一次的效果
+// 				oheight -= 4;
+// 			})
+		</script>
+		<!-- 位置 -->
+		<script type="text/javascript">
+			// .offset()
+			// $('#log', document.body).click(function (e) {
+			// 	var offset = $(this).offset();
+			// 	// 阻止事件冒泡
+			// 	e.stopPropagation();
+			// 	$('p').text(offset.left + ', ' + offset.top);
+			// });	
+			
+			// .position()
+			// $('#log').click(function (e) {
+			// 		var position = $(this).position();
+			// 	$('p').text(position.left + ', ' + position.top);
+			// })
+			
+			// offsetParent()
+			// $('li.elem').offsetParent().css('background-color', 'red');
+			
+			// scrollLeft()
+			// 获取log的scrollLeft
+			// $('#log').text('scrollLeft:' + $(this).scrollLeft());
+			// scrollTop()
+			// 获取log的scrollTop()
+			// $('#log').text('scrollTop:' + $(this).scrollTop());
+		</script>
+		<!-- 数据 -->
+		<script type="text/javascript">
+			// .data()
+			// 从div元素存储然后找回一个值
+			// $('#log').data('test', {
+			// 	first: 16,
+			// 	last: 'jianmei',
+			// });
+			// $('span:first').text($('#log').data('test').first);
+			// $('span:last').text($('#log').data('test').last);
+			
+			// .removeData()
+			$('#log').data('test1', {
+				first: 16,
+			});
+			$('#log').data('test2', {
+				last: 'jianmei',
+			});
+			$('span:first').text($('#log').data('test1').first);
+			$('#log').removeData('test2');
+			$('span:last').text($('#log').data('test2').last);
+		</script>
+	</body>
+</html>
