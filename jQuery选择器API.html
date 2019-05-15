@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 80px;
+				height: 80px;
+				margin: 5px;
+				background-color: #90EE90;
+			}
+			p{
+				width: 80px;
+				height: 20px;
+				background-color: salmon;
+			}
+			span{
+				display: inline-block;
+				width: 50px;
+				height: 20px;
+				background-color: #90EE90;
+			}
+			.move{
+				background-color: salmon;
+			}
+		</style>
+	</head>
+	<body>
+		  <form>
+  <fieldset>
+    <input type="button" value="Input Button"/>
+    <input type="checkbox" disabled/>
+    <input type="checkbox" />
+    <input type="checkbox" checked />
+    <input type="file" />
+    <input type="hidden" />
+    <input type="image" />
+    <input type="password" />
+    <input type="radio" />
+    <input type="reset" />
+    <input type="submit" />
+    <input type="text" />
+    <select><option>Option</option></select>
+    <textarea></textarea>
+    <button>Button</button>
+  </fieldset>
+</form>
+<div>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+		<div></div>
+		<div>
+			<button></button>
+			<button></button>
+		</div>
+		<div>
+			<button></button>
+		</div>
+		<div style="display: none;">hidden</div>
+		<div class="demo">demo1</div>
+		<div class="demo">demo2</div>
+		<div id="demo">demo3</div>
+		<div class="demodemo">demo4</div>
+		<p></p>
+		<div>
+			<p>demo</p>
+			<p>demo</p>
+			<p>demo</p>
+		</div>
+		<span></span>
+	    <div>
+		     <a href=""></a>
+		     <p>demo</p>
+		     <p>demo</p>
+		     <p>demo</p>
+	    </div>
+		<p>1</p>
+		<span lang = "en">1</span>
+		<span lang = "en-mei">2</span>
+		<span lang = "mei-en">3</span>
+		<div title = "demo">1</div>
+		<div title = "demodemo">2</div>
+		<div title = "de demo">3</div>
+		<div title = "demo">4</div>
+		<div title="">5</div>
+		<h1>jianmei</h1>
+		<h2>jianmei</h2>
+		<button id="run">run</button>
+		<div><p></p></div>
+		<div> </div>
+		<div></div>
+		<div class="move"></div>
+		<div>jian mei</div>
+		<div >mei</div>
+		</div>
+		<script src="../jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 基本、层级、属性选择器 -->
+		<script type="text/javascript">
+			// 类选择器
+			// $('.demo').css({
+			// 	border: '3px solid red',
+			// })
+			
+			// 元素选择器
+			// $('div').css({
+			// 	color: 'skyblue',
+			// })
+			
+			// id选择器
+			// $('#demo').css({
+			// 	border: '3px solid skyblue',
+			// })
+			
+			// 子选择器
+			// $('div>p').css({
+			// 	border: '3px solid skyblue',
+			// })
+			
+			// 群组选择器
+			// $('.demo, #demo').css({
+			// 	border: '2px solid red',
+			// })
+			
+			// 后代选择器
+			// $('div p').css({
+			// 	border: '3px solid skyblue',
+			// })
+			
+			// 前缀选择器
+			// $('div.demo').css({
+			// 	color: 'red',
+			// })
+			
+			// next选择器
+			// $('p+span').css({
+			// 	border: '3px solid blue',
+			// })
+			
+			// 属性选择器
+			// $('div[title = demo]').css({
+			// 	border: '5px solid skyblue',
+			// })
+			
+			// $('div[title]').css({
+			// 	border: '5px solid skyblue',
+			// })
+			
+			// $('div[title$=demo]').html('jianmei');
+		</script>
+		<!-- 基本筛选选择器 -->
+		<script type="text/javascript">
+			// 第几个index
+			// :eq()
+			// $('div:eq(1)').css({
+			// 	color: 'red',
+			// })
+			
+			// 比index大
+			// :gt()
+			// $('div:gt(1)').css({
+			// 	color: 'red',
+			// })
+			
+			// 比index小
+			// :lt()
+			// $('div:lt(2)').css({
+			// 	color: 'red',
+			// })
+			
+			// 奇数
+			// :odd
+			// $('div:odd').css({
+			// 	color: 'red',
+			// })
+			
+			// 偶数
+			// :even
+			// $('div:even').css({
+			// 	color: 'red',
+			// })
+			
+			// 第一
+			// :first
+			// $('div:first').html('jianmei');
+			
+			// 最后
+			// :last
+			// $('div:last').html('jianmei');
+			
+			// 选择标题元素
+			// :header
+			// $(':header').css({
+			// 	background: 'skyblue',
+			// })
+			
+			// .not
+			// $('div').not(':odd').css({
+			// 	border: '2px solid skyblue',
+			// })
+			
+			// 选择语言对应项
+			// :lang()
+			// $('span:lang(en)').css({
+			// 	border: '2px solid red',
+			// })
+			
+			// :root,选择的根元素是html
+			// $('<b></b>').html($(':root')[0].nodeName).appendTo('p');
+			
+			// :animated
+			
+			
+		</script>
+		<!-- 内容筛选选择器 -->
+		<script type="text/javascript">
+			
+			// :parent
+			// 含有子元素的div,包括文本节点
+			// $('div:parent()').css({
+			// 	border: '3px solid skyblue',
+			// })
+			
+			// :empty
+			// 选择没有包含文本节点和子元素的元素
+			// $('div:empty').css({
+			// 	border: '3px solid skyblue',
+			// })
+			
+			// 子元素包含p的div
+			// :has()
+			// $('div:has(p)').css({
+			// 	border: '2px solid skyblue',
+			// })
+			// 
+			// 含有指定文本的节点元素
+			// :contains()
+			// $('div:contains(mei)').css({
+			// 	border: '2px solid skyblue'
+			// })
+			
+			// :hidden
+			// $('div:hidden').show(3000);
+			
+			// visible
+			// 选择可见的元素
+			// $('p:visible').click(function() {
+			// 	$(this).css({
+			// 		background: 'skyblue',
+			// 	})
+			// })
+		</script>
+		<!-- 子元素筛选选择器 -->
+		<script type="text/javascript">
+			// :first-child
+			// $('div p:first-child').css({
+			// 	'text-decoration': 'underline',
+			// })
+			
+			// :first-of-type
+			// 选择所有的相同元素名称的元素
+			// $('div p:first-of-type').css({
+			// 	background: 'red',
+			// })
+
+			// nt-child()
+			// 选择index = 2的div
+			// $('div p:nth-child(1)').click(function () {
+			// 	$(this).css({
+			// 		border: '5px solid skyblue',
+			// 	});
+			// });
+			// 
+			// ：only-child
+			// 选择div内只有一个button
+			// $('div button:only-child').text('alone').css({
+			// 	border: '2px solid skyblue',
+			// })
+		</script>
+		<!-- 表单选择器 -->
+		<script type="text/javascript">
+			// :button
+			// $(':button').addClass('move');
+			
+			// 复选框
+			// [type = 'checkbox']
+			// $('[type = checkbox]').wrap("<span style='background-color:red'>");
+			
+			// 复选框处于选中状态
+			// $('input:checked').wrap("<span style='background-color:red'>");
+			
+			// 选择禁用的元素
+			// $('input:disabled').wrap("<span style='background-color:red'>");
+			
+			// 选择可用的元素
+			// $('input:enabled').wrap("<span style='background-color:red'>");
+			
+			// 选择当前获取焦点的元素
+			// $('input[type = text]').focus(function () {
+			// 	$(this).css({
+			// 		background:'red',
+			// 	})
+			// })
+		</script>
+	</body>
+</html>
