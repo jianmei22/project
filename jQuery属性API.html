@@ -50,15 +50,10 @@
 			and
 			<span></span>
 		</div>
-		<!-- <ul>
-			<li>22
-				<ul>
-					<li style="position: relative;">1</li>
-					<li class="elem">2</li>
-					<li>3</li>
-				</ul>
-			</li>
-		</ul> -->
+		<div  style="position: relative;" >
+			<p class="elem">222</p>
+		</div>
+		<div class="elem">222</div>
 		<script src="../jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script>
 		<!-- 属性 -->
 		<script type="text/javascript">
@@ -233,7 +228,10 @@
 			// })
 			
 			// offsetParent()
-			// $('li.elem').offsetParent().css('background-color', 'red');
+			// $('p.elem').offsetParent().css({
+			// 	color: 'red',
+			// 	background: 'red',
+			// });
 			
 			// scrollLeft()
 			// 获取log的scrollLeft
@@ -254,15 +252,15 @@
 			// $('span:last').text($('#log').data('test').last);
 			
 			// .removeData()
-			$('#log').data('test1', {
-				first: 16,
-			});
-			$('#log').data('test2', {
-				last: 'jianmei',
-			});
-			$('span:first').text($('#log').data('test1').first);
-			$('#log').removeData('test2');
-			$('span:last').text($('#log').data('test2').last);
+			// $('#log').data('test1', {
+			// 	first: 16,
+			// });
+			// $('#log').data('test2', {
+			// 	last: 'jianmei',
+			// });
+			// $('span:first').text($('#log').data('test1').first);
+			// $('#log').removeData('test2');
+			// $('span:last').text($('#log').data('test2').last);
 		</script>
 	</body>
 </html>
