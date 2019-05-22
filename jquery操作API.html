@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			p{
+				width:200px;
+				height:30px;
+				background: salmon;
+			}
+			.demo{
+				width: 500px;
+				height: 50px;
+				margin: 5px 0;
+				border: 2px solid #90EE90;
+			}
+			p.off{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<b>hello</b>
+		<p>have a good day
+		<span>jianmei</span>
+		</p>
+		<p>have a nice day</p>
+		<div class="demo">123</div>
+		<div class="demo">123</div>
+		<div class="demo">123</div>
+		<p>hello</p>
+		<p>you</p>
+		<button>meimei</button>
+		<button>meimei</button>
+		<button>meimei</button>
+		<p></p>
+		<p></p>
+		<script src="../jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// clone克隆
+			// prependTo是将元素插入到前面
+			// $('b').clone().prependTo('p');
+			// appendTo是将元素插入到后面,就是添加的意思
+			// $('b').clone().appendTo('p');
+			
+			// wrap()
+			// 在所有的p外面包裹一层div
+			// $('p').wrap("<div class = 'demo'></div>")
+			
+			// wrapAll()
+			// 与wrap不同的是wrap是在匹配符合的每一个元素外面都要加一个div
+			// 而wrapAll只在所有匹配的元素外面加一层div
+			// $('p').wrapAll("<div class = 'demo'></div>")
+			
+			// wrapInner()
+			// $('p').wrapInner("<div class = 'demo'></div>") 
+			
+			// append()
+			// 在div内插入p
+			// $('div').append($('b'));
+			
+			// appendTo
+			// 将p插入到div内
+			// $('b').appendTo($('.demo'));
+			
+			// html()
+			// 如果添加的是空的字符串,则代表清空div内的内容
+			// $('.demo').html('');
+			// 向div内添加内容
+			// $('.demo').html('jianmei');
+			
+			// prepend()
+			// 在div内插入b
+			// b元素的内容会放在原本div内容的前面,跟append是相反的
+			// $('.demo').prepend($('b'));
+			
+			// prependTo()
+			// 将b插入到div内
+			// $('b').prependTo($('.demo'));
+						
+		    // .text()
+			// 在段落p中添加文本
+			// $('p').text('jianmeinew text');
+			
+			// .after()
+			// 在demo类之后插入p标签
+			// $('.demo').after('<p>jianmei</p>')
+			// 在demo类后插入所有的p
+			// $('.demo').after($('p'));
+			
+			// .before()
+			// 在demo类之前插入p标签
+			// $('.demo').before('<p>jianmei</p>')
+			
+			
+			// .insertAfter()
+			//将p插入到demo类之后
+			// $('p').insertAfter('.demo');
+			
+			// .insertBefore()
+			// 将p插入demo类之前
+			// $('p').insertBefore('.demo');
+			
+			// .detach()
+			// 删除DOM中所有段落
+			// $('p').click(function () {
+			// 	$(this).toggleClass('.off');
+			// });
+			// var p;
+			// $('button').click(function () {
+			// 	if(p) {
+			// 		p.appendTo('body');
+			// 		p = null;
+			// 		}else {
+			// 			p = $('p').detach();
+			// 		}
+			// });
+			
+			// .remove()
+			// 将所有段落从DOM中删除
+			// $('button').click(function () {
+			// 	$('p').remove();
+			// })
+			
+			// .empty()
+			// $('button').click(function () {
+			// 	$('p').empty();
+			// });
+			
+			// unwrap()
+			// 点击按钮给p的父级元素为demo样式的进行添加和删除操作
+			// var pTags = $('p');
+			// // 给button绑定事件
+			// $('button').click(function () {
+			// 	// 判断p的父级元素是否有demo样式
+			// 	// 若有则删除
+			// 	if(pTags.parent().is('.demo')) {
+			// 		pTags.unwrap();
+			// 	}
+			// 	// 若没有则包裹一个demo样式的div
+			// 	else{
+			// 		pTags.wrap('<div class = "demo"></div>');
+			// 	}
+			// });
+			
+			// .replaceAll()
+			// // 将所有的p替换成demo
+			// $('button').click(function () {
+			// 	$('<div class = "demo">div</div>').replaceAll($('p'));
+			// })
+			
+			// .replaceWith()
+			// 点击按钮的时候,用div替换按钮
+			$('button').click(function () {
+				// 用div替换当前的button
+				$(this).replaceWith("<div class = 'demo'>" + $(this).text() + "</div>");
+			})
+			
+			
+		</script>
+	</body>
+</html>
+ 
