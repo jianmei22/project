@@ -124,6 +124,15 @@
 			// 所以start就等于Math.floor(Math.random() *
 			// 		$div.length),这里的start必须是确定的一个正整数,不能是一个范围.
 			// 最后取得的值必须要加1,因为slice取得的值不包括尾
+			// 固定长度内 随机范围的end值的 获取方式：
+			// end安全值 = 长度 - start
+			// end = end安全值 + 起始值 + 1
+			
+			// const length = 8;
+			// const start = Math.floor(Math.random() * length);
+			// const secScope = length - start #end安全范围 = 长度 - start;
+			// const secEnd = Math.floor.(Math.random()*secScope);
+			// const end = secEnd + start + 1
 		</script>
 		<!-- 各种遍历 -->
 		<script type="text/javascript">
