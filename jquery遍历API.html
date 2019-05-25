@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.demo {
+				width: 300px;
+				height: 30px;
+				border: 2px solid #90EE90;
+				margin: 5px;
+			}
+
+			div {
+				width: 50px;
+				height: 50px;
+				border: 2px solid salmon;
+				margin: 3px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div>item1 <p>jianmei</p></div>
+		<div>item2</div>
+		<div>item3</div>
+		<div class="demo">item4</div>
+		<ul >
+			<li>click me</li>
+			<li class="one">item2
+			<ul>
+				<li>jinamei</li>
+			</ul></li>
+			<li>item3</li>
+			<li>item4</li>
+			<li>item5</li>
+		</ul>
+		<form action="">
+			<input type="text" name="name" value="item1" />
+			<input type="text" name="url" value="item2" />
+		</form>
+		<div>jianmei</div>
+		<div>jianmei</div>
+		<button type="button">切换</button>
+		<p>meimei</p>
+		<p><span>hello</span> how are you</p>
+		<div><p>jianemi</p></div>
+		<script src="../jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// .eq()
+			// // item1加上demo样式
+			// $('body').find('div').eq(0).addClass('demo');
+			// // item3加上demo样式,注意index为负数时,从1开始,没有0
+			// $('body').find('div').eq(-1).addClass('demo');
+
+			// .filter()
+			// 给所有index从0开始为偶数的div添加demo样式
+			// $('div').filter(':even').addClass('demo');
+
+			// 改变所有div的样式,并为含有demo样式的div添加背景颜色
+			// $('div').css({
+			// 	border: '2px solid pink'})
+			// 	.filter('.demo')
+			// 	.css('backgroundColor', 'red');
+
+			// .add()
+			// 给第一个div添加样式
+			// $('div').first().addClass('demo');
+
+			// has()
+			// 检测是否一个元素在另外一个元素之内
+			// $('ul').has('li').addClass("demo");
+
+			// is()
+			// 针对检查列表元素交替现有的集合
+			// 选择偶数行
+			// var $demo = $('li:nth-child(2n)').css("background", "red");
+			// $('li').click(function () {
+			// 	var $li = $(this);
+			// 	if($li.is($demo)) {
+			// 		$li.slideUp();
+			// 	}else{
+			// 		$li.css("background", "green");
+			// 	}
+			// })
+
+			// .map()
+			// 获取表单中所有表单元素的值
+			// $('div').append($('input').map(function () {
+			// 	return $(this).val();
+			// 	// 由于map返回的是一个jquery包裹的数组
+			// 	// 所以通常会使用get()方法将其转换成普通的数组
+			// }).get().join(","));
+
+			// .not()
+			// 为div的样式不是demo的加边框
+			// $('div').not('.demo').css('border','2px solid pink');
+
+			// .slice()
+// 			function colorEm() {
+// 				var $div = $("div");
+// 				var start = Math.floor(Math.random() *
+// 					$div.length);
+// 				var end = Math.floor(Math.random() *
+// 						($div.length - start)) +
+// 					start + 1;
+// 				if (end == $div.length) end = undefined;
+// 				$div.css("background", "");
+// 				if (end)
+// 					$div.slice(start, end).css("background", "yellow");
+// 				else
+// 					$div.slice(start).css("background", "yellow");
+// 
+// 				$("span").text('$("div").slice(' + start +
+// 					(end ? ', ' + end : '') +
+// 					').css("background", "yellow");');
+// 			}
+// 			$("button").click(colorEm);
+			
+			
+			// Math.random()生成0到1的随机数(小数)
+			// 0到1的小数乘以长度就变成了0到长度的小数
+			// 0到1的小数 乘以 长度 再向下取整 就变成了0到长度的整数
+			// 所以start就等于Math.floor(Math.random() *
+			// 		$div.length),这里的start必须是确定的一个正整数,不能是一个范围.
+			// 最后取得的值必须要加1,因为slice取得的值不包括尾
+		</script>
+		<!-- 各种遍历 -->
+		<script type="text/javascript">
+			// add将元素添加到匹配的元素集合中
+			// $('p').clone().add("<span>mei</span>").appendTo(document.body);
+			// .contents()
+			// 获取匹配元素集合中每个元素的子元素,包括文字和注释节点
+			// 段落内找到所有的文本节点,并将他们包装了一个标记
+			// $('p').contents().filter(function () {
+			// 	return this.nodeType != 1;
+			// }).wrap("<b/>");
+			
+			// each()
+			// 遍历一个jquery对象,对每个匹配的元素执行一个函数
+			// $('li').each(function (index) {
+			// 	console.log(index + ':' + $(this).text());
+			// })
+			
+			// 例:
+			// 遍历所有div并设置它们的color属性
+			// $(document.body).click(function () {
+			// 	$('div').each(function (i) {
+			// 		if(this.style.color != 'blue'){
+			// 		this.style.color = 'blue';
+			// 	}
+			// 	else {
+			// 		this.style.color = '';
+			// 	}
+			// 	});
+			// });
+			
+			// .end()
+			// 终止在当前链的最新过滤操作,并返回匹配的元素的以前状态
+			// $('div').find('div').end().css({
+			// 	'background-color': 'red',
+			// })
+		</script>
+		<script type="text/javascript">
+			// addBack()
+			// 添加堆栈中元素集合到当前集合,一个选择性的过滤选择器
+			// $('li:nth-child(3)').nextAll().addBack().css({
+			// 	'background-color': 'red',
+			// })
+			// 调用nextAll后将第4和第5项推入堆栈,最后调用addBack合并这两个组元素在一起.
+			
+			// children
+			// 获得匹配元素集合中每个元素的子元素,选择器选择性筛选
+			// 选择class = 'one'的li的子元素并设置样式
+			// $('.one').children().css({
+			// 	'background-color' : 'red',
+			// })
+			
+			// closest()
+			// 从元素本身开始,在dom树上逐级向上级元素匹配,并返回最先匹配的祖先元素.
+			// $(document).bind('click', function (e) {
+			// 	$(e.target).closest('li').toggleClass('demo');
+			// })
+			
+			// find()
+			// 通过一个选择器,jquery对象,或者元素过滤.得到当前匹配的元素集合中每个元素的后代.
+			// 发现p标签下面的span标签,并设置样式
+			// $('p').find('span').css({
+			// 	'color' : 'red',
+			// })
+			
+			// next()
+			// 取得匹配的元素集合中每一个元素紧邻的后面同辈元素集合,只有紧邻的兄弟元素满足选择器时,才会返回此元素.
+			// $('p').next().css({
+			// 	'color': 'red',
+			// })
+			
+			// nextAll()
+			// 选择每个匹配元素集合中所有下面的同辈元素,选择性筛选的选择器.
+			// $('li:nth-child(3)').nextAll().css({
+			// 	'color': 'blue',
+			// })
+			
+			// nextUntil
+			// 通过选择器,dom节点,或者jquery对象得到每个元素之后的所有兄弟元素,但不包括匹配的元素.
+			// $('li:nth-child(3)').nextUntil().css({
+			// 	'color': 'blue',
+			// })
+			
+			// parent()
+			// 取得匹配元素集合中,每个元素的父元素,可以提供一个可选的选择器
+			// 查找父级元素带有one的并且设置样式
+			// $('ul').parent('.one').css({
+			// 	'color' : 'red',
+			// })
+			
+			// parents()
+			// 获得集合中每个匹配元素的祖先元素,可以提供一个可选的选择器作为参数
+			// $('p').parents('div').css({
+			// 	'color' : 'red',
+			// })
+			
+			// prev()
+			// 获取集合中每个匹配元素紧邻的前一个兄弟元素,如果提供了一种选择器,它将只检索匹配该选择器的紧邻的前一个兄弟元素.
+			// 改变第四个前面的一个元素的样式
+			// $('li:nth-child(4)').prev().css({
+			// 	'color': 'red',
+			// })
+			
+			// prevAll()
+			// 跟nextAll一个原理
+			// 此例选择第四个前面的所有兄弟元素,不包含自己
+			// $('li:nth-child(4)').prevAll().css({
+			// 	'color': 'red',
+			// })
+			
+			// siblings()
+			// 获得匹配元素集合中每个元素的兄弟元素,可以提供一个可选的选择器
+			// $('li:nth-child(4)').siblings().css({
+			// 	'color': 'red',
+			// })			
+		</script>
+	</body>
+</html>
