@@ -1156,6 +1156,712 @@ css的position属性是relative absolute 或者fixed元素
 			$('#log').removeData('test2');
 			$('span:last').text($('#log').data('test2').last);
 ```
+### 操作
+
+#### 拷贝
+```bash
+.clone 创建一个匹配的元素集合的深度拷贝副本
+
+.clone()方法深度复制所有匹配的元素集合，包括所有匹配元素，元素的下级元素，文字节点
+
+当和插入方法联合使用的时候，.clone()对于复制页面上的元素很方便
+
+__注意__:当使用clone的时候，在将它插入到文档之前，我们可以修改克隆后的元素或者元素内容
+
+```
+复制所有的b元素然后将他们插入到所有的段落中
+```js
+		<b>hello</b>
+		<p>have a good day</p>
+		
+			// prependTo是将元素插入到前面
+			// $('b').clone().prependTo('p');
+			// appendTo是将元素插入到后面,就是添加的意思
+			$('b').clone().appendTo('p');
+```		
+#### DOM插入、包裹
+
+1. .wrap()
+
+在集合中匹配的每一个元素周围包裹一个html结构
+
+在所有的p外面包裹一层div，此例中会有两个div
+
+```js
+		<p>have a good day</p>
+		<p>have a nice day</p>
+		
+		//在p外面包裹一个class为demo的div
+			$('p').wrap("<div class = 'demo'></div>")
+```
+2. wrapAll()
+
+在集合中所有匹配元素的外面包裹一个html元素，此例中只有一个包裹在两个p元素怒外面的div，div的数量只有一个
+
+```js
+		<p>have a good day</p>
+		<p>have a nice day</p>
+		
+			// 与wrap不同的是wrap是在匹配符合的每一个元素外面都要加一个div
+			// 而wrapAll只在所有匹配的元素外面加一层div		
+			$('p').wrapAll("<div class = 'demo'></div>")
+```
+
+3. wrapInner()
+
+在匹配元素里的内容外包一层结构
+
+选择所有的段落，包裹每一个匹配元素的内容
+
+__注意__:wrap和wrapInner都是包裹每一个匹配的元素
+
+__但是不同的是wrap是在选择的每一个元素外包裹一层，但是wrapInner是在选择的每个元素的内容外包裹一层__
+
+```js
+		<p>have a good day</p>
+		<p>have a nice day</p>
+		
+		//包裹的是内容have a good day
+			$('p').wrapInner("<div class = 'demo'></div>")
+```
+####DOM插入，内部插入
+
+1. append()
+
+在每个匹配元素里面的末尾处插入参数内容
+```js
+		// 在div内插入p
+			$('div').append($('b'));
+```
+
+2. appendTo()
+
+将匹配的元素插入到目标元素的最后面
+
+```js
+		<b>hello</b>
+		<div class="demo"></div>
+		
+		// 将p插入到div内
+			$('b').appendTo($('.demo'));
+```
+3. html()
+
+获取集合中第一个匹配元素的html内容或者设置每一个匹配元素的html内容
+
+```js
+		<div class="demo">123</div>
+		<div class="demo">123</div>
+		<div class="demo">123</div>
+		
+			// 如果添加的是空的字符串,则代表清空div内的内容
+			// $('.demo').html('');
+			// 向div内添加内容
+			$('.demo').html('jianmei');
+```
+4.prepend()
+
+将参数内容插入到每个匹配元素的前面（元素内部）
+
+```js
+		<b>hello</b>
+		<div class="demo">123</div>
+		
+			// 在div内插入b
+			// b元素的内容会放在原本div内容的前面,跟append是相反的
+			$('.demo').prepend($('b'));
+```
+5. prependTo()
+
+将所有元素插入到目标前面（元素内）
+
+```js
+		<b>hello</b>
+		<div class="demo">123</div>
+		
+			// 将b插入到div内
+			$('b').prependTo($('.demo'));
+```
+6. text()
+
+得到匹配元素集合中每个元素的文本内容，包括他们的后代，或者设置匹配元素集合中每一个元素的文本内容为指定的文本内容
+
+```js
+		<p>have a good day</p>
+		<p>have a nice day</p>
+		
+			// 在段落p中添加文本
+			$('p').text('jianmeinew text');
+```
+### DOM插入、外部插入
+
+1、after()
+
+在匹配元素集合中的每个元素后面插入参数所指定的内容，作为其兄弟节点
+
+```js
+		<div class="demo">123</div>
+		<div class="demo">123</div>
+		
+			// 在demo类之后插入p标签
+			// $('.demo').after('<p>jianmei</p>')
+			// 在demo类后插入所有的p
+			$('.demo').after($('p'));
+```
+2、 before和after的理论是一样的，根据参数的设定，在匹配的元素前面插入内容，外部插入
+
+```js
+			// 在demo类之前插入p标签
+			$('.demo').before('<p>jianmei</p>')
+```
+3、 insertAfter和after是一样的功能，主要是插入内容和目标的位置不同，
+
+```js
+			//将p插入到demo类之后
+			$('p').insertAfter('.demo');
+```
+4、 同理可知insertBefore的原理
+
+```js
+			// 将p插入demo类之前
+			$('p').insertBefore('.demo');
+```
+
+#### DOM移除
+
+1、 detach(),从DOM中去掉所有匹配的元素
+
+detach和remove方法一样，除了deach保存所有jquery数据和被移走的元素相关联
+
+当需要移走一个数据，不久又将该元素插入DOM时，常用此方法。
+```js
+		<p>hello</p>
+		<p>you</p>
+		<button>meimei</button>
+		
+			// 删除DOM中所有段落
+			$('p').click(function () {
+				$(this).toggleClass('.off');
+			});
+			var p;
+			$('button').click(function () {
+				if(p) {
+					p.appendTo('body');
+					p = null;
+					}else {
+						p = $('p').detach();
+					}
+			});
+```
+2、 remove() 将匹配元素集合从DOM中删除（同时删除的还有元素上的事件以及jquery数据）
+
+可以移除任何想要移除的元素
+
+将所有的段落从DOM
+
+```JS
+			// 将所有段落从DOM中删除
+			$('button').click(function () {
+				$('p').remove();
+			})
+```
+
+3、 empty() 从DOM中移除集合中匹配元素的所有子节点
+
+这个方法不仅移除子元素和后代元素，同时移除元素里的文本
+```js
+		<p>hello</p>
+		<p>you</p>
+		<button>meimei</button>
+		
+		$('button').click(function () {
+			$('p').empty();
+		});
+```
+4、 unwrap() 将匹配元素集合的父级元素删除，保留自身（和兄弟元素，如果存在）在原来的位置
+
+在每个段落外层加上一个div或者删除div
+
+点击按钮添加或者删除样式
+
+```js
+		<p>hello</p>
+		<p>you</p>
+		<button>meimei</button>
+		
+			// 点击按钮给p的父级元素为demo样式的进行添加和删除操作
+			var pTags = $('p');
+			// 给button绑定事件
+			$('button').click(function () {
+				// 判断p的父级元素是否有demo样式
+				// 若有则删除
+				if(pTags.parent().is('.demo')) {
+					pTags.unwrap();
+				}
+				// 若没有则包裹一个demo样式的div
+				else{
+					pTags.wrap('<div class = "demo"></div>');
+				}
+			});
+```
+
+DOM替换
+1、 replaceAll()
+
+用集合的匹配元素替换每个目标元素
+
+.replaceAll(target)
+
+```js
+			// 将所有的p替换成demo
+			$('button').click(function () {
+				$('<div class = "demo">div</div>').replaceAll($('p'));
+			})
+```
+2、 replaceAll()
+
+用提供的内容替换集合中所有匹配的元素并且返回被删除元素的集合
+
+.replaceWith()可以从dom中移除内容，也可以在这个地方插入新的内容
+
+```js
+			// 点击按钮的时候,用div替换按钮
+			$('button').click(function () {
+				// 用div替换当前的button
+				$(this).replaceWith("<div class = 'demo'>" + $(this).text() + "</div>");
+			})
+```
+### 事件
+
+#### 浏览器事件
+
+1、 .resize()
+
+为js的resize事件绑定一个处理函数，或者触发元素上的该事件
+
+例：当窗口大小改变时（改变后），查看窗口的宽度。
+
+```js
+			$(window).resize(function () {
+				$('body').prepend('<div>' + $(window).width() + '</div>');
+			})
+```
+2、 .scroll()
+
+为js的scroll事件绑定一个处理函数，或者触发元素上的该事件
+
+例：在页面滚动的时候触发一系列动作
+
+```js
+			$('p').clone().appendTo(document.body);
+			$('p').clone().appendTo(document.body);
+			$('p').clone().appendTo(document.body);
+			$('p').clone().appendTo(document.body);
+			$('p').clone().appendTo(document.body);
+			$(window).scroll(function () {
+				$('span').css({
+					'display':'inline'
+				}).fadeOut('slow');
+			})
+```
+
+3、 文档加载(holdReady())
+
+暂停或恢复，延迟就绪事件，直到已加载加载
+
+```js
+			$.holdReady(true);
+			$.getScript(''),function () {
+				$.holdReady(false);
+			};
+```
+3、 ready()
+
+当dom准备就绪的时候，指定一个函数来执行
+
+例子：显示当dom加载的信息
+
+```js
+			$(document).ready(function () {
+				$('p').text("the dom is")
+			})
+```
+
+```js
+			//当dom准备好了之后,就会绑定一个函数
+			$(document).ready(function () {
+				// 给button绑定一个函数,点击button,切换p的上滑与下滑 状态
+				$('button').click(function () {
+					$('p').slideToggle();
+				});
+			})
+```
+4、unload()
+
+为js的unload事件绑定一个处理函数
+
+例子：当离开页面时显示一个提示框
+
+```js
+			$(window).unload(function () {
+				return "bye now";
+			});
+```
+#### 事件绑定
+
+1、 bind()
+
+为一个元素绑定一个事件处理程序
+
+bind的基本用法：在p上绑定一个点击事件
+
+`
+			$('p').bind('click', function () {
+				alert('user clicked');
+			})
+			`
+			
+例子：为段落标签绑定单击事件
+
+```js
+		<p>ppp </p>
+		<span></span>
+		
+			// 点击p将鼠标点击的位置写入span中
+			// 鼠标移入和移出时改变class样式
+			$('p').bind('click', function (event) {
+				$('span').text('clicked:' + event.pageX + ',' +  event.pageY);
+			})
+			$('p').bind('mouseenter mouseleave', function (event) {
+				$(this).toggleClass('demo');
+			})
+```
+
+2、 delegate()
+
+为所有匹配选择器的元素绑定一个或多个事件处理函数，基于一个指定的根元素的子集，匹配的元素包括那些目前已经匹配到的元素，也包括那些今后可能匹配到的元素。
+
+例子：点击添加另外一个段落，__请注意__,delegate()绑定所有段落的click事件，甚至是新的段落。
+
+```js
+			// delegate()
+			// 给p点击一个点击事件,每点击一次,就在前一个的后面加一个样式一样的p
+			$('body').delegate('p', 'click', function () {
+				$(this).after('<p>new paragraph</p>')
+			});
+```
+
+3、 off()
+
+移除一个事件处理函数
+
+例子：移除click事件
+
+```js
+		<p>ppp </p>
+		<p>移除之后</p>
+		<button>移除</button>
+		
+			// ready(),当dom准备好了的时候,就加载背景颜色
+			$(document).ready(function () {
+				$('p').on('click', function () {
+					$(this).css('background-color', 'pink');
+				});
+				// 点击button移除click事件之后,就没有事件被绑定
+				$('button').click(function () {
+					$('p').off('click');
+				});
+			})
+```
+4. one()
+
+为元素的事件添加处理函数,处理函数在每个元素上每种事件类型最多执行一次
+
+one()和on()是相同的,不同之处在于,对于给定的元素和事件类型,处理程序在第一次触发事件之后会被立即解除绑定
+
+例子:点击任何一个段落,段落的字体大小只会改变一次
+
+```js
+			// 这里是one,所以这个事件只执行一次,点击效果只一次有效,如果是on绑定事件,正常状态可以点击多次实现效果
+			$(document).ready(function () {
+				$('p').one('click', function () {
+					$(this).animate({
+						fontSize: "+=6px"});
+				});
+			});
+```
+
+5. trigger()
+
+trigger()和triggerHandle()不同的是:trigger会触发默认事件
+
+根据绑定到匹配元素的给定的事件类型执行所有的处理程序和行为
+
+```js
+		<input type="text" value="文本">
+		<button type="button">选中</button>
+		
+			// 点击button选中input框的文本
+			$('input').ready(function () {
+				$('button').click(function () {
+					$('input').trigger('select');
+				})
+			})
+```
+
+6. triggerHandle()与trigger方法类似,不同的是trigger会触发事件的默认行为,例如表单的提交.
+
+#### 表单事件
+
+1. blur()
+
+当元素失去焦点的时候发生blur事件,该方法通常和focus一起使用
+
+```js
+			// 当input失去焦点弹出一个提示框
+			$(document).ready(function () {
+				$('input').blur(function () {
+					alert('失去了焦点');
+				})
+			})
+```
+2. focus()方法和blur()方法用法差不多
+
+```js
+			// 获取焦点的时候,显示提示字
+			$(document).ready(function () {
+				$('input').focus(function () {
+					$('span').css({
+						'display':'inline',
+					}).fadeOut(2000);
+				})
+			})
+```
+3. change() 当元素的值改变时发生change事件(仅适用于表单字段)
+
+当输入框的值发生改变的时候,按下enter键或者在点击输入框外部,会弹出一个提示框
+
+```js
+			$(document).ready(function () {
+				$('input').change(function () {
+					alert('文本已经被修改');
+				})
+			})
+```
+4. select()
+
+为js的select事件绑定一个处理函数
+
+例子:当输入框的文本被选中的时候,在div内显示文本
+```js
+			$(document).ready(function () {
+				$('input').select(function () {
+					$('div').text('select').show().fadeOut(2000)
+				})
+			})
+```
+
+5. submit()
+
+当提交表单时,会发生submit事件,该方法只适用于form元素
+
+```js
+		<form action="505-事件冒泡.html" method="post">
+			<input type="text">
+			<input type="text">
+			<input type="submit" value="提交"/>
+		</form>
+		
+			$(document).ready(function () {
+				$('form').submit(function () {
+					alert('提交');
+				});
+			});
+```
+
+#### 键盘事件
+1. keydown()和keyup()
+
+与keydown事件相关的事件顺序
+```bash
+* keydown 键被按下的过程
+* keypress 键被按下
+* keyup 键被松开
+```
+例子:按下键盘输入的时候会改变输入框的颜色()
+```js
+			$(document).ready(function () {
+				$('input').keydown(function () {
+					$('input').css({
+						'background-color':'red',
+					});
+				});
+				$('input').keyup(function () {
+					$('input').css({
+						'background-color':'green',
+					})
+				})
+			});
+```
+2. keypress()
+
+例子:计算在input字段内按键次数
+
+```js
+			var i = 0;
+			$(document).ready(function () {
+				$('input').keypress(function () {
+					$('span').text(i += 1);
+				})
+			})
+```
+####鼠标事件
+1. click()单次点击 dblclick()双击
+
+2.鼠标的相关事件
+```js
+			$(document).ready(function () {
+				$('div').mousedown(function () {
+					$(this).css({
+						'border':'2px solid blue',
+					});
+				}).mouseout(function () {
+					$(this).css({
+						'border':'4px solid green',
+					})
+				}).mouseover(function () {
+					$(this).css({
+						'background':'pink',
+					})
+				}).mouseleave(function () {
+					$(this).css({
+						'background':'darkgrey',
+					})
+				}).mouseenter(function () {
+					$(this).css({
+						'background' :'red',
+					})
+				}).onmouseup(function () {
+					$(this).css({
+						'background' :'blue',
+					})
+				})
+			})
+```
+3. mousemove()
+
+```js
+			// 获取鼠标移动的时候,鼠标在页面的位置
+			$(document).ready(function () {
+				$(document).mousemove(function (event) {
+					$('span').text(event.pageX + ',' + event.pageY);
+				});
+			});
+```
+4. focusin()和focusout()
+
+当元素或者在其内的任意元素,获得焦点时就会发生focusin事件
+
+例: 当div元素或者其任意子元素获得焦点时,设置div元素的背景颜色
+```js
+			// focusin()和focusout
+			$(document).ready(function () {
+				$('nav.demo').focusin(function () {
+					$(this).css({
+						'background' : 'red',
+					});
+				});
+				$('nav.demo').focusout(function () {
+					$(this).css({
+						'background' : '#90EE90',
+					})
+				})
+			})
+```
+
+####事件对象
+
+1、event.currentTarget
+
+该属性是在事件冒泡阶段内的当前dom元素，通常等于this
+
+```js
+	$(document).ready(function () {
+				$('button, div, p').click(function () {
+					// 因为这里是三个等号,相当于判断,故输出的值hi一个布尔值,event.currentTarget等于this,所以返回true
+					alert(event.currentTarget === this);
+				});
+			});
+```
+2、event.data()
+
+包含当前执行的处理程序被绑定时传递到事件方法的可选数据
+
+例：对每个p元素返回通过on方法传递的数据
+
+这里还没懂
+
+```js
+			$(document).ready(function () {
+				$('p').each(function (i) {
+					$(this).on('click',{x:i},function (event) {
+						// index从0开始的
+						alert('num:' + $(this).index() + ',' + event.data.x);
+					});
+				});
+			});
+```
+3、event.isDefaultPrevented()
+
+检查指定的事件是否调用了preventDefault()
+
+例子：防止链接打开url，并检查preventDefault是否被调用
+```js
+			$(document).ready(function () {
+				$('nav').click(function(event) {
+					event.preventDefault();
+					// 如果被调用则会返回true
+					alert('是否调用：'+ event.isDefaultPrevented());
+				});
+			});
+```
+4、 event.pageX和event.pageY
+
+返回鼠标的位置，分别是相对于文档的左边缘和上边缘
+
+例：获取鼠标的位置
+```js
+			$(document).ready(function () {
+				$(document).mousemove(function (event) {
+					$('nav').text("x:" + event.pageX  +"y:" + event.pageY);
+				})
+			})
+```
+5、 event.preventDefault()
+
+阻止元素发生默认的行为：例如：当点击提交的时候阻止对表单的提交，阻止一下url的链接。
+
+例子：防止链接打开url
+```js
+			$(document).ready(function () {
+				$('a').click(function (event) {
+					event.preventDefault();
+				});
+			});
+```
+5、event.which 返回指定事件上被按下的鼠标键或者按钮
+
+例子：当你在以上输入框中输入内容时，div 中会陷入输入键的数字码。
+
+```js
+			$(document).ready(function () {
+				$('input').keydown(function (event) {
+					$('div').html('key:' + event.which);
+				})
+			})
+```
+
+
 
 
 
