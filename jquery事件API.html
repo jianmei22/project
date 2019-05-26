@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 200px;
+				height: 30px;
+				background: #90EE90;
+			}
+			p{
+				width: 150px;
+				height: 20px;
+				background: salmon;
+			}
+			p.demo{
+				background: #90EE90;
+			}
+			/* span{
+				display: none;
+			} */
+			nav.demo{
+				width: 300px;
+				height: 50px;
+				background: #90EE90;
+			}
+		</style>
+	</head>
+	<body>
+		<p>meimei</p>
+		<div>scroll the iframe</div>
+		<p>ppp </p>
+		<p>移除之后</p>
+		<button>移除</button>
+		<br>
+		<input type="text" value="文本">
+		<span>输入名字</span>
+		<br>
+		<button type="button">选中</button>
+		<form action="505-事件冒泡.html" method="post">
+			<input type="text">
+			<input type="text">
+			<input type="submit" value="提交"/>
+		</form>
+		<nav class="demo">
+			one:<input type="text" value = "输入">	
+			<br>
+			two:<input type="text" value = "输入">
+		</nav>
+		<p>mei</p>
+		<a href="https://www.baidu.com">jianemi</a>
+		<script src="../jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// .resize()
+			// 查看窗口的宽度
+			// $(window).resize(function () {
+			// 	$('body').prepend('<div>' + $(window).width() + '</div>');
+			// })
+			
+			// .scroll
+			// 页面滚动时触发一系列动作
+			// $('p').clone().appendTo(document.body);
+			// $('p').clone().appendTo(document.body);
+			// $('p').clone().appendTo(document.body);
+			// $('p').clone().appendTo(document.body);
+			// $('p').clone().appendTo(document.body);
+			// $(window).scroll(function () {
+			// 	$('span').css({
+			// 		'display':'inline'
+			// 	}).fadeOut('slow');
+			// })
+			
+			// .holdReady()
+			// $.holdReady(true);
+			// $.getScript(''),function () {
+			// 	$.holdReady(false);
+			// };
+			
+			// .ready()
+			// $(document).ready(function () {
+			// 	$('p').text("the dom is")
+			// })
+			
+			// .unload()
+			// 当离开页面的时候显示一个提示框
+			// $(window).unload(function () {
+			// 	return "bye now";
+			// });
+			
+			// $('p').bind('click', function () {
+			// 	alert('user clicked');
+			// })
+			
+			// 点击p将鼠标点击的位置写入span中
+			// 鼠标移入和移出时改变class样式
+			// $('p').bind('click', function (event) {
+			// 	$('span').text('clicked:' + event.pageX + ',' +  event.pageY);
+			// })
+			// $('p').bind('mouseenter mouseleave', function (event) {
+			// 	$(this).toggleClass('demo');
+			// })
+			
+			// delegate()
+			// 给p点击一个点击事件,每点击一次,就在前一个的后面加一个样式一样的p
+			// $('body').delegate('p', 'click', function () {
+			// 	$(this).after('<p>new paragraph</p>')
+			// });
+			
+			// off()
+			// ready(),当dom准备好了的时候,就加载背景颜色
+			// $(document).ready(function () {
+			// 	$('p').on('click', function () {
+			// 		$(this).css('background-color', 'pink');
+			// 	});
+			// 	// 点击button移除click事件之后,就没有事件被绑定
+			// 	$('button').click(function () {
+			// 		$('p').off('click');
+			// 	});
+			// })
+			
+			// ready()
+			// 切换段落的上滑和下滑
+			// //当dom准备好了之后,就会绑定一个函数
+			// $(document).ready(function () {
+			// 	// 给button绑定一个函数,点击button,切换p的上滑与下滑 状态
+			// 	$('button').click(function () {
+			// 		$('p').slideToggle();
+			// 	});
+			// })
+			
+			// .one()
+			// // 这里是one,所以这个事件只执行一次,点击效果只一次有效,如果是on绑定事件,正常状态可以点击多次实现效果
+			// $(document).ready(function () {
+			// 	$('p').one('click', function () {
+			// 		$(this).animate({
+			// 			fontSize: "+=6px"});
+			// 	});
+			// });
+			
+			// .trigger()
+			// 点击button选中input框的文本
+			// $('input').ready(function () {
+			// 	$('button').click(function () {
+			// 		$('input').trigger('select');
+			// 	})
+			// })
+		</script>
+		<!-- 表单事件 -->
+		<script type="text/javascript">
+			// blur()
+			// 当input失去焦点弹出一个提示框
+			// $(document).ready(function () {
+			// 	$('input').blur(function () {
+			// 		alert('失去了焦点');
+			// 	})
+			// })
+			
+			// .focus()
+			// 获取焦点的时候,显示提示字
+			// $(document).ready(function () {
+			// 	$('input').focus(function () {
+			// 		$('span').css({
+			// 			'display':'inline',
+			// 		}).fadeOut(2000);
+			// 	})
+			// })
+			
+			// change()
+			// 输入框的值发生改变的时候,按下enter键或者在点击输入框外部,会弹出一个提示框
+			// $(document).ready(function () {
+			// 	$('input').change(function () {
+			// 		alert('文本已经被修改');
+			// 	})
+			// })
+			
+			// Select()
+			// $(document).ready(function () {
+			// 	$('input').select(function () {
+			// 		$('div').text('select').show().fadeOut(2000)
+			// 	})
+			// })
+			
+			// Submit()
+			// $(document).ready(function () {
+			// 	$('form').submit(function () {
+			// 		alert('提交');
+			// 	});
+			// });
+			
+			// keydown()
+			// $(document).ready(function () {
+			// 	$('input').keydown(function () {
+			// 		$('input').css({
+			// 			'background-color':'red',
+			// 		});
+			// 	});
+			// 	$('input').keyup(function () {
+			// 		$('input').css({
+			// 			'background-color':'green',
+			// 		})
+			// 	})
+			// });
+			
+			// keypress()
+			// 计算input字段内被按键的次数
+			// var i = 0;
+			// $(document).ready(function () {
+			// 	$('input').keypress(function () {
+			// 		$('span').text(i += 1);
+			// 	})
+			// })
+		</script>
+		<!-- 鼠标事件 -->
+		<script type="text/javascript">
+			
+			// $(document).ready(function () {
+			// 	$('div').mousedown(function () {
+			// 		$(this).css({
+			// 			'border':'2px solid blue',
+			// 		});
+			// 	}).mouseout(function () {
+			// 		$(this).css({
+			// 			'border':'4px solid green',
+			// 		})
+			// 	}).mouseover(function () {
+			// 		$(this).css({
+			// 			'background':'pink',
+			// 		})
+			// 	}).mouseleave(function () {
+			// 		$(this).css({
+			// 			'background':'darkgrey',
+			// 		})
+			// 	}).mouseenter(function () {
+			// 		$(this).css({
+			// 			'background' :'red',
+			// 		})
+			// 	}).onmouseup(function () {
+			// 		$(this).css({
+			// 			'background' :'blue',
+			// 		})
+			// 	})
+			// })
+			
+			// mousemove()
+			// // 获取鼠标移动的时候,鼠标在页面的位置
+			// $(document).ready(function () {
+			// 	$(document).mousemove(function (event) {
+			// 		$('span').text(event.pageX + ',' + event.pageY);
+			// 	});
+			// });
+			
+			// focusin()和focusout
+			// $(document).ready(function () {
+			// 	$('nav.demo').focusin(function () {
+			// 		$(this).css({
+			// 			'background' : 'red',
+			// 		});
+			// 	});
+			// 	$('nav.demo').focusout(function () {
+			// 		$(this).css({
+			// 			'background' : '#90EE90',
+			// 		})
+			// 	})
+			// })
+			
+		</script>
+		<!--事件对象  -->
+		<script type="text/javascript">
+			// event.currentTarget()
+			// $(document).ready(function () {
+			// 	$('button, div, p').click(function () {
+			// 		// 因为这里是三个等号,相当于判断,故输出的值hi一个布尔值,event.currentTarget等于this,所以返回true
+			// 		alert(event.currentTarget === this);
+			// 	});
+			// });
+			
+			// 没懂
+			// event.data()
+			// $(document).ready(function () {
+			// 	$('p').each(function (i) {
+			// 		$(this).on('click',{x:i},function (event) {
+			// 			// index从0开始的
+			// 			alert('num:' + $(this).index() + ',' + event.data.x);
+			// 		});
+			// 	});
+			// });
+			
+			// event.isDefaultPrevented()
+			// $(document).ready(function () {
+			// 	$('nav').click(function(event) {
+			// 		event.preventDefault();
+			// 		// 如果被调用则会返回true
+			// 		alert('是否调用：'+ event.isDefaultPrevented());
+			// 	});
+			// });
+			
+			// event.pageX  event.pageY
+			// $(document).ready(function () {
+			// 	$(document).mousemove(function (event) {
+			// 		$('nav').text("x:" + event.pageX  +"y:" + event.pageY);
+			// 	})
+			// })
+			
+			// event.preventDefault
+			// $(document).ready(function () {
+			// 	$('a').click(function (event) {
+			// 		event.preventDefault();
+			// 	});
+			// });
+			
+			// event.which()
+			// $(document).ready(function () {
+			// 	$('input').keydown(function (event) {
+			// 		$('div').html('key:' + event.which);
+			// 	})
+			// })
+		</script>
+	</body>
+</html>
