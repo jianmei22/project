@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 200px;
+				height: 50px;
+				border: 2px solid salmon;
+				margin: 5px;
+			}
+			input{
+				margin: 8px;
+				border: 2px solid #90EE90;
+			}
+			p {
+				background: salmon;
+			}
+
+			span {
+				background: sandybrown;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 	<p>one</p>
+		<div>
+			<p>two</p>
+		</div>
+		<p>three</p>
+		<div></div>
+		<p></p>
+		<span></span>
+		<div class="log">
+			<h3>content:</h3>
+		</div>
+		<div><span></span></div>
+		<div><span></span></div>
+		<div><span></span></div>
+		<div><span></span></div>
+		是数组吗？<b></b>
+		<div>first</div>
+		<div>second</div>
+		<div>third</div>
+		<div>fourth</div> -->
+		
+		<!-- <p><button class="test">test</button></p>
+		<p class="log"></p>
+		<pre class="original"></pre>
+		<pre class="trimmed"></pre>
+		这是一个正则表达式？<b></b>
+		<div>document中又6个div块</div>
+		<div></div>
+		<div class="dup"></div>
+		<div class="dup"></div>
+		<div class="dup"></div>
+		<div></div> -->
+		
+		<!-- <span> </span>
+		<div><input type="text"></div> -->
+		
+		<!-- <div class = "bar"></div>
+		<div class = "foo"></div>
+		<div class = "nav"></div>
+		<p></p> -->
+		
+		<!-- <span></span>
+		<div></div> -->
+		
+		reversed: <span></span>
+		<div>one</div>
+		<div>two</div>
+		<div>three</div>
+		<script src="../jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// $("div > p").css({
+			// 	"border": "1px solid gray",
+			// });
+
+			// jQuery.noConflict();
+			// jQuery("div p").hide();
+			// $("content").style.display = "none";
+
+			// $(function () {
+			// 	$.when({
+			// 		tetsing: 123
+			// 	}).done({
+			// 		function(x){
+			// 			alert(x.testing);
+			// 		}
+			// 	});
+			// })
+
+			// 检测一个元素在另一个元素之内
+			// $(function () {
+			// 	$.contains(document.documentElement, document.body); //true
+			// 	$.contains(document.body, document.documentElement);//false
+			// })
+
+			// $(function () {
+			// 	$.each([52, 97], function (index, value) {
+			// 		alert(index + ":" + value);
+			// 	});
+			// })
+
+			// $(function () {
+			// 	var object1 = {
+			// 		apple: 0,
+			// 		banana: {
+			// 			weight: 52,
+			// 			price: 100,
+			// 		},
+			// 		cherry: 97,
+			// 	};
+			// 	var object2 = {
+			// 		banana:{
+			// 			price: 200,
+			// 		},
+			// 		durian: 100,
+			// 	};
+			// 	// object2合并到object1中
+			// 	$.extend(object1, object2);
+			// 	var printObj = typeof JSON != "undefined" ? JSON.stringify : function(obj) {
+			// 		var arr = [];
+			// 		$.each(obj, function(key, val) {
+			// 			var next = key + ":";
+			// 			next += $.isPlainBoject(val) ? printObj(val) : val;
+			// 			arr.push(next);
+			// 		});
+			// 		return "{" + arr.join(",") + "}";
+			// 	};
+			// 	$(".log").append(printObj(object1));
+			// });
+
+			// jquery.globalEval()
+			// function test() {
+			// 	jQuery.globalEval("var newVar = true;")
+			// }
+			// test();
+
+			// var arr = [1,2,3,4,5,6,7,8,8,9,3,45,56,65,47,76,75];
+			// $("div").text(arr.join(", "));
+			// arr = jQuery.grep(arr, function (n, i) {
+			// 	return (n != 5 && i > 4);
+			// });
+			// $("p").text(arr.join(", "));
+			// arr = jQuery.grep(arr, function (a) {
+			// 	return a != 9;
+			// });
+			// $("span").text(arr.join(", "));
+		</script>
+		<script type="text/javascript">
+			// $(function () {
+			// 	var arr = [4, "peter", 8, "john"];
+			// 	var $spans = $("span");
+			// 	$spans.eq(0).text(jQuery.inArray("john", arr));
+			// 	$spans.eq(1).text(jQuery.inArray(4, arr));
+			// 	$spans.eq(2).text(jQuery.inArray("kali", arr));
+			// 	$spans.eq(3).text(jQuery.inArray("tom", arr, 2));
+			// })
+
+			// 查找参数是否为数组
+			// 在"+"加号前面加冒号是为了将后面的判断结果变成字符串
+			// $("b").append("" + $.isArray([]));
+
+			// 检查对象是否为空
+			// $(function () {
+			// 	function fun(html) {
+			// 		document.body.innerHTML += "<br>" + html;
+			// 	}
+			// 	fun($.isEmptyObject({}));  //true
+			// 	fun($.isEmptyObject({
+			// 		foo: "bar" //false
+			// 	}));
+			// });
+
+			// 测试一个对象是否是纯粹的对象
+			// console.log(jQuery.isPlainObject({}));  //true
+			// console.log(jQuery.isPlainObject("test"));  //false
+
+
+			// 转换一个类似数组的对象成为真正的js数组
+			// var elems = $("div");
+			// var arr = jQuery.makeArray(elems);
+			// // 颠倒数组中元素的顺序
+			// arr.reverse();
+			// $(arr).appendTo(document.body);
+
+			// 使用map()修改一个数组的值
+			// var arr = ["a", "b", "c", "d", "e"];
+			// // join()把数组中所有的元素转换成一个字符串
+			// $("div").text(arr.join(", "));
+			// arr = jQuery.map(arr, function (n, i) {
+			// 	return (n.toUpperCase() + i);
+			// });
+			// $("p").text(arr.join(", "));
+			// arr = jQuery.map(arr ,function (a) {
+			// 	return a + a;
+			// });
+			// $("span").text(arr.join(", "));
+
+			// 合并两个数组,但是对第一个参数进行拷贝,这样就可以保证原始内容不被修改
+			// var first = ['a', 'b', 'c'];
+			// var second = ['d', 'e', 'f'];
+			// console.log($.merge($.merge([],first), second));
+
+			// $(function () {
+			// 	document.body.innerHTML = $.now();
+			// })
+
+			// $(document).ready(function () {
+			// 	var $log = $(".log");
+			// 		str = "<b>name:</b> mei",
+			// 		html = $.parseHTML(str),
+			// 		nodeNames = [];
+			// 	// 添加已经解析的html
+			// 	$log.append(html);
+			// 	// 集合已经解析的html的节点名称
+			// 	$.each(html, function (i, elem) {
+			// 		nodeNames[i] = "<li>" + elem.nodeName + "</li>";
+			// 	});
+			// 	// 插入节点名
+			// 	$log.append("<h3>nodeNames:</h3>");
+			// 	$("<ol></ol>").append(nodeNames.join("")).appendTo($log);
+			// })
+
+			// var obj = jQuery.parseJSON('{"name": "mei"}');
+			// alert(obj.name) === "mei";
+		</script>
+		<script type="text/javascript">
+			// var obj = {
+			// 	name: "mei",
+			// 	test: function () {
+			// 		$(".log").append(this.name);
+			// 		$(".test").off("click", obj.test);
+			// 	}
+			// };
+			// // 接收了一个click函数,又接收了一个新的proxy函数
+			// $(".test").on("click", jQuery.proxy(obj, "test"));
+
+			// 删除在开始和在字符串的末尾的两个空格
+			// var str = "     meimeimei    ";
+			// $(".original").html("original(原始): " + str + "");
+			// $(".trimmed").html("trimmed（去掉空格后）: " + $.trim(str) + "");
+
+			// 判断该参数是否是一个正则表达式
+			// $(function () {
+			// 	$("b").append("" + jQuery.type(/test/));
+			// });
+
+			// 从数组中删除重复的div元素
+			// $(function() {
+			// 	//unique() 必须获取一个原始数据
+			// 	var divs = $("div").get();
+			// 	// 添加三个div块元素
+			// 	// concat方法用于连接两个或者多个字符串
+			// 	divs = divs.concat($(".dup").get());
+			// 	$("div:eq(1)").text("重排序后有 " + divs.length + " 个元素");
+			// 	divs = jQuery.unique(divs);
+			// 	$("div:eq(2)").text("重排序后有 " + divs.length + " 个元素").css("color", "red");
+			// })
+			
+			// get()
+			// console.log($("div").get(2));
+			
+			// $("*", document.body).click(function (e) {
+			// 	// 阻止冒泡事件
+			// 	e.stopPropagation();
+			// 	var dom = $(this).get(0);
+			// 	$("span").text("" + dom.tagName);
+			// })
+			
+			// 返回class等于foo的索引值
+			// $(function () {
+			// 	var $foo = $(".foo");
+			// 	$("p").html('index:' + $("div").index($foo));
+			// })
+			
+			// 统计div的个数,点击时添加一个div
+			// $(document.body).click(function () {
+			// 	$(this).append($("<div>"));
+			// 	var n = $("div").length;
+			// 	$('span').text("there are " + n + " divs, click to add more");
+			// }).click();
+		</script>
+		<script type="text/javascript">
+			function disp(divs) {
+				var a = [];
+				for(var i = 0; i < divs.length; i ++){
+					
+				}
+			}
+		</script>
+	</body>
+</html>
