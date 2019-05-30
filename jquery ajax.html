@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+	</head>
+	<body>
+		<form action="">
+			第一个名称：<input type="text" name="fn" value="jian">
+			最后一个名称：<input type="text" name="ln" value="mei">
+		</form>
+		<!-- <button>序列化表单值</button> -->
+		<button type="button">获取json数据</button>
+		<div></div>
+		<div class="log"></div>
+		<b>project</b>
+		<ol class="new-project"></ol>
+		<script src="../jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 全局ajax事件处理程序 -->
+		<script type="text/javascript">
+			// ajaxComplete()
+			// $(document).reday(function() {
+			// 	$(document).ajaxComplete(function(event, request, settings) {
+			// 		$('.item1').append('completed');
+			// 	});
+			// });
+
+			// ajaxError()
+			// $(document).reday(function() {
+			// 	$(document).ajaxError(function() {
+			// 		alert('error');
+			// 	});
+			// });
+
+			// ajaxSend()
+			// 在document上面绑定一个事件处理器
+			// $(document).ajaxSend(function () {
+			// 	$('.log').text('ajaxSend()');
+			// })
+
+			// 当ajax请求即将发送前显示一个信息
+			// $(document).ajaxSend(function (event, request, settings) {
+			// $('.log').append('<li>' + settings.url + '</li>');	
+			// });
+
+			// 当ajax请求开始发送时显示一个信息(没有一个ajax请求时已经激活的)
+			// $(document).ajaxStart(function () {
+			// 	$('.log').show();
+			// })
+
+			// ajaxStop()
+			// 在ajax请求完成时执行一个处理函数
+			// 在ajax请求停止后隐藏加载信息
+			// $(document).ajaxStop(function () {
+			// 	$('.log').hide();
+			// })
+
+			// ajaxSuccess()
+			// 绑定一个函数当ajax请求完成时执行
+
+			// 当ajax请求成功之后,显示一个信息
+			// $(document).ajaxSuccess(function (event, request, settings) {
+			// 	$('.log').append('<li>' + settings.url + '</li>');
+			// });
+
+			// jquery.param()
+			// var params = {
+			// 	width:1680,
+			// 	height:1050
+			// };
+			// var str = jQuery.param(params);
+			// $('.log').text(str);
+
+			// 序列化表单
+			// $(document).ready(function () {
+			// 	$('button').click(function () {
+			// 		$('div').text($('form').serialize());
+			// 	});
+			// })
+
+			// 序列化表单值
+			// $(document).ready(function() {
+			// 	$('button').click(function() {
+			// 		x = $("form").serializeArray();
+			// 		$.each(x, function(i, field) {
+			// 			$(".log").append(filed.name + ":" + field.value + " ");
+			// 		});
+			// 	});
+			// });
+			
+			// 载入并执行一个js文件
+			// $.ajax({
+			// 	method: "GET",
+			// 	url: "index.js",
+			// 	dataType: "script",
+			// });
+			
+			// 保存数据到服务器,成功时显示信息
+			// $.ajax({
+			// 	method: "POST",
+			// 	url: "some.php",
+			// 	data: {
+			// 		name: "mary",
+			// 		location: "weston",
+			// 	}
+			// }).done(function(msg) {
+			// 	alert('data saved' + msg);
+			// });
+			
+			// 装入一个html网页最新版本
+			// $.ajax({
+			// 	url: "index.html",
+			// 	cache: false
+			// }).done(function (html) {
+			// 	$(".log").append(html);
+			// })
+			
+			// $.ajaxSetup({
+			// 	url: "/xmlhttp",
+			// 	global: false,
+			// 	type: "POST"
+			// });
+			// $.ajax({
+			// 	data: myData
+			// });
+			
+			// $.ajax({
+			// 	dataType: "json",
+			// 	url: url,
+			// 	data: data,
+			// 	success: success
+			// });
+			
+			// jquery.getJSON()
+			// $(document).ready(function () {
+			// 	$("button").click(function () {
+			// 		$.getJSON("demo_ajax_json.js", function (result){
+			// 			$.each(result, function (i, field) {
+			// 				$("div").append(field + " ");
+			// 			});
+			// 		});
+			// 	});
+			// });
+			
+			$('new-project').load("/resouces/load.html .project li")
+		</script>
+		<script src="../jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
