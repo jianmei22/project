@@ -424,10 +424,275 @@ __.size()已经被废弃了，用.length__
 
 返回一个包含jquery对象集合中的所有dom元素的数组
 
+```js
+		<button type="button">输出每个li的值</button>
+		<ul>
+			<li>111</li>
+			<li>222</li>
+			<li>333</li>
+		</ul>
+		
+			// 把li元素转换成数组,然后输出该数组元素的innerHTML
+			$(document).ready(function () {
+				$("button").one("click", function () {
+					x = $("li").toArray();
+					for(i = 0; i < x.length; i ++) {
+						console.log(x[i].innerHTML);
+					}
+				})
+			})
+```
 例：选择文档中所有的div，并且返回一个dom元素数组，然后利用浏览器内置的reverse方法反转整个数组
 
 ```js
-
+		reversed: <span></span>
+		<div>one</div>
+		<div>two</div>
+		<div>three</div>
+		
+			// 把div转换成数组,然后输出该数组元素的innerhtml
+			function disp(divs) {
+				var a = [];
+				for(var i = 0; i < divs.length; i ++){
+					a.push(divs[i].innerHTML);
+				}
+				$("span").text(a.join(" "));
+			}
+			disp($("div").toArray().reverse());
 ```
 
+#### 内部构件
 
+1、jquery
+
+一个包含了jquery版本号的字符串
+
+例：输出当前正在运行的版本
+
+```js
+			$(document).ready(function () {
+				$("button").on("click", function () {
+					var version = $().jquery;
+					console.log("正在运行的版本:" + version);
+				})
+			})
+```
+
+#### 延迟对象
+
+1、.always().fail().catch()函数受到延迟或者被拒绝的时候，调用添加的处理程序
+
+```js
+			$(function () {
+				$.get("test.php").always(function () {
+					console.log(带有成功和错误的回调参数为$.get方法已经完成);
+				})
+			})
+```
+2、.done()
+延迟对象解决的时候，调用添加处理程序
+
+3、.promise()
+
+返回一个promise对象，用来观察当某种类型的所有行动绑定到集合，排队与否还说已经完成
+
+例：在一个没有激活动画的集合上调用promise()
+
+```js
+		$(function () { 
+			var div = $( "<div />" );
+			div.promise().done(function( arg1 ) {
+				//弹出 "true"
+				alert( this === div && arg1 === div );
+			});
+		})
+```
+
+####回调函数
+
+1、jquey.callbacks()
+
+一个多用途的回调列表对象，提供了强大的方式来管理回调函数列表
+
+例：向$.Callbacks()的列表添加回调函数
+
+```js
+			$(function () {
+				function fn1(value) {
+					alert(value);
+				}
+				function fn2(value) {
+					fn1("fn2 says:" + value);
+					return false;
+				}
+				var callbacks = $.callbacks();
+				callbacks.add(fn1);
+				// 输出foo!
+				callbacks.fire("foo!");
+				callbacks.add(fn2);
+				// 输出bar!,fn2 says:bar
+				callbacks.fire("bar!");
+			})
+```
+3、.disable()禁用回调列表中的回调
+
+```js
+			$(function() {
+				$(function() {
+					// 一个将被添加到列表的简单的函数
+					var foo = function(value) {
+						alert(value);
+					};
+					var callbacks = $.Callbacks();
+					// 添加上面的函数到回调列表
+					callbacks.add(foo);
+					// 传入参数调用所有回调列表函数
+					callbacks.fire("foo");
+					// 输出: foo     
+					// 禁用回调函数
+					callbacks.disable();
+					// 尝试用 "foobar" 作为参数
+					callbacks.fire("foobar");
+					// foobar 不会被输出
+				})
+			})
+```
+
+4、.empty()从列表中删除所有的回调
+```js
+			$(function() {
+				// 将被添加到列表的简单函数
+				var foo = function(value1, value2) {
+					alert("foo: " + value1 + "," + value2);
+				}
+				// 另一个将被添加到列表的函数
+				var bar = function(value1, value2) {
+					alert("bar: " + value1 + "," + value2);
+				}
+				var callbacks = $.Callbacks();
+				// 添加两个函数
+				callbacks.add(foo);
+				callbacks.add(bar);
+				//清空回调列表
+				callbacks.empty();
+				// 确认所有回调列表是否被移除
+				alert(callbacks.has(foo));
+				// false
+				alert(callbacks.has(bar));
+				// false
+			})
+```
+
+6、.fired()确认回调是否至少已经调用一次
+
+```js
+			$(function() {
+				// 将被添加到列表的一个简单的函数
+				var foo = function(value) {
+					alert("foo:" + value);
+				};
+				var callbacks = $.Callbacks();
+				// 添加函数 "foo" 到列表
+				callbacks.add(foo);
+				// 传入参数调用所有回调列表
+				callbacks.fire("hello"); // 输出: "foo: hello"
+				callbacks.fire("world"); // 输出: "foo: world"	 
+				// 测试回到列表是否只是被调用过一次
+				alert(callbacks.fired());
+			})
+```
+
+7、.firedWith()访问给定的上下文和参数列表中的所有回调
+
+```js
+$(function () { 
+	//将被添加到列表的一个简单的函数
+	var log = function( value1, value2 ) {
+		alert( "Received: " + value1 + "," + value2 );
+	};
+	
+	var callbacks = $.Callbacks();
+	// 添加函数到列表
+	callbacks.add( log );
+	// 使用上下文"window"调用回调列表
+	// 和一个数组参数
+	callbacks.fireWith( window, ["foo","bar"]);
+	// 输出: "Received: foo, bar"
+})
+```
+
+8、.has()确定列表是否有绑定任何回调，如果回调作为一个参数提供，那么可以确定其是否在列表中
+```js
+			$(function() {
+				//将被添加到列表的一个简单的函数
+				var foo = function(value1, value2) {
+					alert("Received: " + value1 + "," + value2);
+				};
+				//另一个将被添加到列表的函数
+				var bar = function(value1, value2) {
+					alert("foobar");
+				}
+				var callbacks = $.Callbacks();
+				// 添加函数到列表
+				callbacks.add(foo);
+				alert(callbacks.has(foo));
+				// true
+				alert(callbacks.has(bar));
+				// false
+			})
+```
+
+9、.lock()锁定回调列表的当前状态
+
+10、.locked()确定回调列表是否已经被锁定
+9、10例如下：
+```js
+			$(function() {
+				// 简单的测试函数
+				var foo = function(value) {
+					alert("foo:" + value);
+				};
+				var callbacks = $.Callbacks();
+				// 添加测试函数foo到列表
+				callbacks.add(foo);
+				// 传入参数调用所有回调
+				callbacks.fire("hello");
+				// 输出 "foo: hello"	
+				// 锁定回调列表
+				callbacks.lock();
+				// 测试回调列表的状态
+				alert(callbacks.locked());
+				// true
+			})
+```
+
+2、.add()回调列表中添加一个回调或者回调的集合
+
+5、.fire()传入指定的参数调用所有的回调
+
+11、.remove()从回调列表中删除一个回调或者回调集合
+
+2、5、11的例如下：
+```js
+			$(function() {
+				// 简单的测试函数
+				var foo = function(value) {
+					alert("foo:" + value);
+				};
+				var callbacks = $.Callbacks();
+				// 添加测试函数foo到列表
+				
+				callbacks.add(foo);
+				// 传入参数调用所有回调
+				
+				callbacks.fire("hello");
+				// 输出 "foo: hello"	
+				// 锁定回调列表
+				
+				callbacks.remove(foo);
+				// 测试回调列表的状态
+				
+				callbacks.fire("world");
+				// 乜有输出，因为列表中没有“foo”回调函数
+			})
+```

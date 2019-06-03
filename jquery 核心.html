@@ -11,10 +11,12 @@
 				border: 2px solid salmon;
 				margin: 5px;
 			}
-			input{
+
+			input {
 				margin: 8px;
 				border: 2px solid #90EE90;
 			}
+
 			p {
 				background: salmon;
 			}
@@ -45,7 +47,7 @@
 		<div>second</div>
 		<div>third</div>
 		<div>fourth</div> -->
-		
+
 		<!-- <p><button class="test">test</button></p>
 		<p class="log"></p>
 		<pre class="original"></pre>
@@ -57,22 +59,29 @@
 		<div class="dup"></div>
 		<div class="dup"></div>
 		<div></div> -->
-		
+
 		<!-- <span> </span>
 		<div><input type="text"></div> -->
-		
+
 		<!-- <div class = "bar"></div>
 		<div class = "foo"></div>
 		<div class = "nav"></div>
 		<p></p> -->
-		
+
 		<!-- <span></span>
 		<div></div> -->
-		
-		reversed: <span></span>
+
+		<!-- reversed: <span></span>
 		<div>one</div>
 		<div>two</div>
-		<div>three</div>
+		<div>three</div> -->
+
+		<button type="button">输出每个li的值</button>
+		<ul>
+			<li>111</li>
+			<li>222</li>
+			<li>333</li>
+		</ul>
 		<script src="../jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			// $("div > p").css({
@@ -261,23 +270,23 @@
 			// 	divs = jQuery.unique(divs);
 			// 	$("div:eq(2)").text("重排序后有 " + divs.length + " 个元素").css("color", "red");
 			// })
-			
+
 			// get()
 			// console.log($("div").get(2));
-			
+
 			// $("*", document.body).click(function (e) {
 			// 	// 阻止冒泡事件
 			// 	e.stopPropagation();
 			// 	var dom = $(this).get(0);
 			// 	$("span").text("" + dom.tagName);
 			// })
-			
+
 			// 返回class等于foo的索引值
 			// $(function () {
 			// 	var $foo = $(".foo");
 			// 	$("p").html('index:' + $("div").index($foo));
 			// })
-			
+
 			// 统计div的个数,点击时添加一个div
 			// $(document.body).click(function () {
 			// 	$(this).append($("<div>"));
@@ -286,12 +295,167 @@
 			// }).click();
 		</script>
 		<script type="text/javascript">
-			function disp(divs) {
-				var a = [];
-				for(var i = 0; i < divs.length; i ++){
-					
-				}
-			}
+			// 把div转换成数组,然后输出该数组元素的innerhtml
+			// function disp(divs) {
+			// 	var a = [];
+			// 	for(var i = 0; i < divs.length; i ++){
+			// 		a.push(divs[i].innerHTML);
+			// 	}
+			// 	$("span").text(a.join(" "));
+			// }
+			// disp($("div").toArray().reverse());
+
+			// 把li元素转换成数组,然后输出该数组元素的innerHTML
+			// $(document).ready(function () {
+			// 	$("button").one("click", function () {
+			// 		x = $("li").toArray();
+			// 		for(i = 0; i < x.length; i ++) {
+			// 			console.log(x[i].innerHTML);
+			// 		}
+			// 	})
+			// })
+
+			// .jquery()
+			// $(document).ready(function () {
+			// 	$("button").on("click", function () {
+			// 		var version = $().jquery;
+			// 		console.log("正在运行的版本:" + version);
+			// 	})
+			// })
+
+			// $(function () {
+			// 	$.get("test.php").always(function () {
+			// 		console.log(带有成功和错误的回调参数为$.get方法已经完成);
+			// 	})
+			// })
+
+			// $(function () {
+			// 	function fn1(value) {
+			// 		alert(value);
+			// 	}
+			// 	function fn2(value) {
+			// 		fn1("fn2 says:" + value);
+			// 		return false;
+			// 	}
+			// 	var callbacks = $.callbacks();
+			// 	callbacks.add(fn1);
+			// 	// 输出foo!
+			// 	callbacks.fire("foo!");
+			// 	callbacks.add(fn2);
+			// 	// 输出bar!,fn2 says:bar
+			// 	callbacks.fire("bar!");
+			// })
+
+			// $(function() {
+			// 	// 简单的测试函数
+			// 	var foo = function(value) {
+			// 		alert("foo:" + value);
+			// 	};
+			// 	var callbacks = $.Callbacks();
+			// 	// 添加测试函数foo到列表
+			// 	callbacks.add(foo);
+			// 	// 传入参数调用所有回调
+			// 	callbacks.fire("hello");
+			// 	// 输出 "foo: hello"	
+			// 	// 锁定回调列表
+			// 	callbacks.remove(foo);
+			// 	// 测试回调列表的状态
+			// 	callbacks.fire("world");
+			// 	// 乜有输出，因为列表中没有“foo”回调函数
+			// })
+
+			// $(function() {
+			// 	// 简单的测试函数
+			// 	var foo = function(value) {
+			// 		alert("foo:" + value);
+			// 	};
+			// 	var callbacks = $.Callbacks();
+			// 	// 添加测试函数foo到列表
+			// 	callbacks.add(foo);
+			// 	// 传入参数调用所有回调
+			// 	callbacks.fire("hello");
+			// 	// 输出 "foo: hello"	
+			// 	// 锁定回调列表
+			// 	callbacks.lock();
+			// 	// 测试回调列表的状态
+			// 	alert(callbacks.locked());
+			// 	// true
+			// })
+
+			// $(function() {
+			// 	//将被添加到列表的一个简单的函数
+			// 	var foo = function(value1, value2) {
+			// 		alert("Received: " + value1 + "," + value2);
+			// 	};
+			// 	//另一个将被添加到列表的函数
+			// 	var bar = function(value1, value2) {
+			// 		alert("foobar");
+			// 	}
+			// 	var callbacks = $.Callbacks();
+			// 	// 添加函数到列表
+			// 	callbacks.add(foo);
+			// 	alert(callbacks.has(foo));
+			// 	// true
+			// 	alert(callbacks.has(bar));
+			// 	// false
+			// })
+
+			// $(function() {
+			// 	// 将被添加到列表的一个简单的函数
+			// 	var foo = function(value) {
+			// 		alert("foo:" + value);
+			// 	};
+			// 	var callbacks = $.Callbacks();
+			// 	// 添加函数 "foo" 到列表
+			// 	callbacks.add(foo);
+			// 	// 传入参数调用所有回调列表
+			// 	callbacks.fire("hello"); // 输出: "foo: hello"
+			// 	callbacks.fire("world"); // 输出: "foo: world"	 
+			// 	// 测试回到列表是否只是被调用过一次
+			// 	alert(callbacks.fired());
+			// })
+
+			// $(function() {
+			// 	// 将被添加到列表的简单函数
+			// 	var foo = function(value1, value2) {
+			// 		alert("foo: " + value1 + "," + value2);
+			// 	}
+			// 	// 另一个将被添加到列表的函数
+			// 	var bar = function(value1, value2) {
+			// 		alert("bar: " + value1 + "," + value2);
+			// 	}
+			// 	var callbacks = $.Callbacks();
+			// 	// 添加两个函数
+			// 	callbacks.add(foo);
+			// 	callbacks.add(bar);
+			// 	//清空回调列表
+			// 	callbacks.empty();
+			// 	// 确认所有回调列表是否被移除
+			// 	alert(callbacks.has(foo));
+			// 	// false
+			// 	alert(callbacks.has(bar));
+			// 	// false
+			// })
+
+			// $(function() {
+			// 	$(function() {
+			// 		// 一个将被添加到列表的简单的函数
+			// 		var foo = function(value) {
+			// 			alert(value);
+			// 		};
+			// 		var callbacks = $.Callbacks();
+			// 		// 添加上面的函数到回调列表
+			// 		callbacks.add(foo);
+			// 		// 传入参数调用所有回调列表函数
+			// 		callbacks.fire("foo");
+			// 		// 输出: foo     
+			// 		// 禁用回调函数
+			// 		callbacks.disable();
+			// 		// 尝试用 "foobar" 作为参数
+			// 		callbacks.fire("foobar");
+			// 		// foobar 不会被输出
+			// 	})
+			// })
 		</script>
 	</body>
 </html>
